@@ -18,6 +18,10 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        hero: "hero-button",
+        heroOutline: "hero-button-outline",
+        neon: "px-6 py-3 rounded-lg font-semibold bg-transparent border-2 border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-background transition-all duration-300 hover:shadow-[0_0_20px_hsl(var(--neon-purple))]",
+        glass: "glass-card px-6 py-3 rounded-lg font-semibold text-foreground hover:bg-primary/20 transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
