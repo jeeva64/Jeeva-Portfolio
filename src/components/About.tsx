@@ -59,8 +59,121 @@ export const About = () => {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Profile Image with Laptop Animation */}
+            <motion.div variants={itemVariants} className="order-2 lg:order-1">
+              <div className="relative max-w-md mx-auto">
+                {/* Laptop Base */}
+                <motion.div
+                  initial={{ rotateX: 90 }}
+                  whileInView={{ rotateX: 0 }}
+                  transition={{ duration: 1, delay: 0.5 }}
+                  className="relative"
+                  style={{ perspective: "1000px" }}
+                >
+                  <div className="bg-muted rounded-lg p-4 shadow-2xl transform" style={{ transformStyle: "preserve-3d" }}>
+                    {/* Laptop Screen */}
+                    <motion.div
+                      initial={{ rotateX: -90 }}
+                      whileInView={{ rotateX: 0 }}
+                      transition={{ duration: 0.8, delay: 0.8 }}
+                      className="bg-background rounded-lg p-2 mb-2 border border-border"
+                      style={{ transformOrigin: "bottom" }}
+                    >
+                      <div className="aspect-video bg-gradient-primary rounded overflow-hidden relative">
+                        <img
+                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                          alt="Jeeva Loganathan"
+                          className="w-full h-full object-cover"
+                        />
+                        {/* Code overlay effect */}
+                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 1.5 }}
+                            className="text-white text-center"
+                          >
+                            <div className="text-lg font-bold mb-1">Jeeva Loganathan</div>
+                            <div className="text-sm opacity-80">Software Developer</div>
+                          </motion.div>
+                        </div>
+                      </div>
+                      
+                      {/* Terminal simulation */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 2 }}
+                        className="bg-black rounded-b p-2 text-xs font-mono"
+                      >
+                        <div className="text-neon-green">
+                          <span className="text-neon-cyan">jeeva@portfolio:~$ </span>
+                          <motion.span
+                            initial={{ width: 0 }}
+                            whileInView={{ width: "auto" }}
+                            transition={{ duration: 2, delay: 2.5 }}
+                            className="inline-block overflow-hidden"
+                          >
+                            npm start
+                          </motion.span>
+                          <motion.span
+                            animate={{ opacity: [0, 1, 0] }}
+                            transition={{ duration: 1, repeat: Infinity }}
+                            className="text-white"
+                          >
+                            |
+                          </motion.span>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                    
+                    {/* Laptop Keyboard */}
+                    <div className="bg-muted-foreground/20 rounded p-2">
+                      <div className="grid grid-cols-12 gap-0.5">
+                        {Array.from({ length: 36 }, (_, i) => (
+                          <div key={i} className="bg-muted-foreground/40 rounded-sm h-2"></div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Floating Code Elements */}
+                <motion.div
+                  animate={{ 
+                    y: [0, -10, 0],
+                    rotate: [0, 5, 0]
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="absolute -top-4 -right-4 bg-neon-purple/20 text-neon-purple px-3 py-1 rounded-lg text-sm font-mono"
+                >
+                  {"{ }"}
+                </motion.div>
+
+                <motion.div
+                  animate={{ 
+                    y: [0, 10, 0],
+                    rotate: [0, -5, 0]
+                  }}
+                  transition={{ 
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                  className="absolute -bottom-4 -left-4 bg-neon-cyan/20 text-neon-cyan px-3 py-1 rounded-lg text-sm font-mono"
+                >
+                  &lt;/&gt;
+                </motion.div>
+              </div>
+            </motion.div>
+
             {/* About Content */}
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} className="order-1 lg:order-2">
               <Card className="glass-card p-8 h-full">
                 <h3 className="text-2xl font-bold mb-6 text-neon-cyan">
                   Hello! I'm Jeeva
