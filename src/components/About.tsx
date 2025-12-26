@@ -40,7 +40,7 @@ export const About = () => {
 
   return (
     <section id="about" className="py-20 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 lg:pl-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -59,83 +59,25 @@ export const About = () => {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Profile Image with Laptop Animation */}
+            {/* Profile Image */}
             <motion.div variants={itemVariants} className="order-2 lg:order-1">
               <div className="relative max-w-md mx-auto">
-                {/* Laptop Base */}
                 <motion.div
-                  initial={{ rotateX: 90 }}
-                  whileInView={{ rotateX: 0 }}
-                  transition={{ duration: 1, delay: 0.5 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8 }}
                   className="relative"
-                  style={{ perspective: "1000px" }}
                 >
-                  <div className="bg-muted rounded-lg p-4 shadow-2xl transform" style={{ transformStyle: "preserve-3d" }}>
-                    {/* Laptop Screen */}
-                    <motion.div
-                      initial={{ rotateX: -90 }}
-                      whileInView={{ rotateX: 0 }}
-                      transition={{ duration: 0.8, delay: 0.8 }}
-                      className="bg-background rounded-lg p-2 mb-2 border border-border"
-                      style={{ transformOrigin: "bottom" }}
-                    >
-                      <div className="aspect-video bg-gradient-primary rounded overflow-hidden relative">
-                        <img
-                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                          alt="Jeeva Loganathan"
-                          className="w-full h-full object-cover"
-                        />
-                        {/* Code overlay effect */}
-                        <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                          <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.6, delay: 1.5 }}
-                            className="text-white text-center"
-                          >
-                            <div className="text-lg font-bold mb-1">Jeeva Loganathan</div>
-                            <div className="text-sm opacity-80">Software Developer</div>
-                          </motion.div>
-                        </div>
-                      </div>
-                      
-                      {/* Terminal simulation */}
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        transition={{ duration: 0.8, delay: 2 }}
-                        className="bg-black rounded-b p-2 text-xs font-mono"
-                      >
-                        <div className="text-neon-green">
-                          <span className="text-neon-cyan">jeeva@portfolio:~$ </span>
-                          <motion.span
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "auto" }}
-                            transition={{ duration: 2, delay: 2.5 }}
-                            className="inline-block overflow-hidden"
-                          >
-                            npm start
-                          </motion.span>
-                          <motion.span
-                            animate={{ opacity: [0, 1, 0] }}
-                            transition={{ duration: 1, repeat: Infinity }}
-                            className="text-white"
-                          >
-                            |
-                          </motion.span>
-                        </div>
-                      </motion.div>
-                    </motion.div>
-                    
-                    {/* Laptop Keyboard */}
-                    <div className="bg-muted-foreground/20 rounded p-2">
-                      <div className="grid grid-cols-12 gap-0.5">
-                        {Array.from({ length: 36 }, (_, i) => (
-                          <div key={i} className="bg-muted-foreground/40 rounded-sm h-2"></div>
-                        ))}
-                      </div>
-                    </div>
+                  <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-neon-purple/30 shadow-2xl mx-auto">
+                    <img
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
+                      alt="Jeeva Loganathan"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
+                  
+                  {/* Glowing effect */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-purple/20 to-neon-cyan/20 animate-pulse"></div>
                 </motion.div>
 
                 {/* Floating Code Elements */}

@@ -1,11 +1,22 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { Trophy, Users, Award, Code, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Trophy, Users, Award, Code, Calendar, ArrowRight } from "lucide-react";
 
 export const Achievements = () => {
   const achievements = [
     {
       id: 1,
+      title: "Outstanding Performer in college",
+      category: "Academic",
+      date: "January 2024",
+      description: "Led a team of 4 developers to victory in the 48-hour debugging marathon, solving complex algorithmic challenges.",
+      icon: Trophy,
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=center",
+      color: "neon-cyan"
+    },
+    {
+      id: 2,
       title: "Bug Hunt Champion",
       category: "Competition",
       date: "March 2024",
@@ -15,31 +26,21 @@ export const Achievements = () => {
       color: "neon-purple"
     },
     {
-      id: 2,
-      title: "Debugging Champion",
-      category: "Hackathon",
-      date: "January 2024",
-      description: "Led a team of 4 developers to victory in the 48-hour debugging marathon, solving complex algorithmic challenges.",
-      icon: Trophy,
-      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=center",
-      color: "neon-cyan"
-    },
-    {
       id: 3,
       title: "TechRise Event Organizer",
       category: "Leadership",
       date: "November 2023",
-      description: "Successfully organized and managed TechRise 2023, a tech symposium with 500+ participants and 20+ speakers.",
+      description: "Successfully organized and managed TechRise 2023, a tech symposium with 50+ participants and 20+ speakers.",
       icon: Users,
       image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=300&fit=crop&crop=center",
       color: "neon-pink"
     },
     {
       id: 4,
-      title: "WebSprint Marathon",
-      category: "Competition",
+      title: "WebSprint Hackathon Event Organizer",
+      category: "Leadership",
       date: "September 2023",
-      description: "Second place finish in the intensive web development sprint, creating a full-stack application in 12 hours.",
+      description: "Successfully organized and managed WebSprint Hackathon, a Hackathon with 100+ participants from 10+ colleges.", 
       icon: Award,
       image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=300&fit=crop&crop=center",
       color: "neon-green"
@@ -54,7 +55,7 @@ export const Achievements = () => {
       image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop&crop=center",
       color: "neon-blue"
     },
-    {
+    /*{
       id: 6,
       title: "Open Source Contributor",
       category: "Development",
@@ -63,7 +64,7 @@ export const Achievements = () => {
       icon: Code,
       image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop&crop=center",
       color: "neon-cyan"
-    }
+    }*/
   ];
 
   const containerVariants = {
@@ -87,7 +88,7 @@ export const Achievements = () => {
 
   return (
     <section id="achievements" className="py-20 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 lg:pl-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -176,6 +177,26 @@ export const Achievements = () => {
               );
             })}
           </div>
+
+          {/* View More Button */}
+          <motion.div 
+            variants={itemVariants}
+            className="text-center mt-16"
+          >
+            <Button 
+              variant="hero" 
+              size="lg"
+              className="group"
+              onClick={() => {
+                // You can add functionality here to show more achievements
+                // For now, it will scroll to certifications section
+                document.getElementById('certifications')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              View More Achievements
+              <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
     </section>

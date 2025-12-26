@@ -5,16 +5,18 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send, User, MessageSquare, Copy, Check, Clock, Calendar, Star, Award } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copiedLink, setCopiedLink] = useState<string | null>(null);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,10 +26,10 @@ export const Contact = () => {
     // Simulate form submission
     setTimeout(() => {
       toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon!",
+        title: "Message Sent Successfully!",
+        description: "Thank you for your message. I'll get back to you within 24 hours!",
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
       setIsSubmitting(false);
     }, 2000);
   };
@@ -39,24 +41,45 @@ export const Contact = () => {
     }));
   };
 
+  const handleCopyLink = async (text: string, label: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedLink(label);
+      toast({
+        title: "Link Copied!",
+        description: `${label} link has been copied to clipboard.`,
+      });
+      setTimeout(() => setCopiedLink(null), 2000);
+    } catch (err) {
+      toast({
+        title: "Copy Failed",
+        description: "Failed to copy link to clipboard.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const contactInfo = [
     {
       icon: <Mail className="w-5 h-5" />,
       title: "Email",
-      value: "jeeva.loganathan@email.com",
-      link: "mailto:jeeva.loganathan@email.com"
+      value: "jeevajeevaloganathan977@gmail.com",
+      link: "mailto:jeevajeevaloganathan977@gmail.com",
+      copyText: "jeevajeevaloganathan977@gmail.com"
     },
     {
       icon: <Phone className="w-5 h-5" />,
       title: "Phone",
-      value: "+91 98765 43210",
-      link: "tel:+919876543210"
+      value: "+91 9976578892",
+      link: "tel:+919976578892",
+      copyText: "+91 9976578892"
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Location",
-      value: "Tamil Nadu, India",
-      link: "#"
+      value: "Tiruchirappalli, Tamil Nadu, India",
+      link: "https://maps.google.com/?q=Tiruchirappalli,Tamil+Nadu,India",
+      copyText: "Tiruchirappalli, Tamil Nadu, India"
     }
   ];
 
@@ -81,7 +104,7 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="py-20 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 lg:pl-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -119,6 +142,8 @@ export const Contact = () => {
                   <motion.a
                     key={index}
                     href={info.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     variants={itemVariants}
                     whileHover={{ x: 5 }}
                     className="flex items-center gap-4 p-4 glass-card rounded-lg hover:border-neon-purple/50 transition-all duration-300 group"
@@ -126,7 +151,7 @@ export const Contact = () => {
                     <div className="p-3 bg-neon-purple/10 text-neon-purple rounded-lg group-hover:bg-neon-purple/20 transition-colors">
                       {info.icon}
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-sm text-muted-foreground">
                         {info.title}
                       </p>
@@ -134,60 +159,138 @@ export const Contact = () => {
                         {info.value}
                       </p>
                     </div>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleCopyLink(info.copyText, info.title);
+                      }}
+                      className="p-2 text-muted-foreground hover:text-neon-purple transition-colors opacity-0 group-hover:opacity-100"
+                      title={`Copy ${info.title}`}
+                    >
+                      {copiedLink === info.title ? (
+                        <Check className="w-4 h-4 text-neon-green" />
+                      ) : (
+                        <Copy className="w-4 h-4" />
+                      )}
+                    </button>
                   </motion.a>
                 ))}
+              </div>
+
+              {/* Additional Information */}
+              <div className="mt-8">
+                <h4 className="text-lg font-semibold text-foreground mb-4">
+                  What I'm Looking For
+                </h4>
+                <div className="space-y-3">
+                  <div className="p-4 glass-card rounded-lg">
+                    <h5 className="font-semibold text-foreground mb-2">Internship / Full-Time Opportunities</h5>
+                    <p className="text-sm text-muted-foreground">
+                      Software Developer, Full-Stack Developer, or AI/ML Engineer positions
+                    </p>
+                  </div>
+                  <div className="p-4 glass-card rounded-lg">
+                    <h5 className="font-semibold text-foreground mb-2">Collaborations</h5>
+                    <p className="text-sm text-muted-foreground">
+                      Open source contributions, hackathons, and innovative tech projects
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
             {/* Contact Form */}
             <motion.div variants={itemVariants}>
               <Card className="glass-card p-8">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold mb-2 text-neon-purple">
+                    Send Me a Message
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Fill out the form below and I'll get back to you as soon as possible.
+                  </p>
+                </div>
+                
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="name" className="text-foreground">
-                      Name
-                    </Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="bg-background/50 border-border focus:border-neon-purple transition-colors"
-                      placeholder="Your full name"
-                    />
+                  {/* Personal Information Section */}
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                      <User className="w-5 h-5 text-neon-cyan" />
+                      Personal Information
+                    </h4>
+                    
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name" className="text-foreground font-medium">
+                          Full Name *
+                        </Label>
+                        <Input
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="bg-background/50 border-border focus:border-neon-purple transition-colors"
+                          placeholder="Enter your full name"
+                        />
+                      </div>
+
+                      <div className="space-y-2">
+                        <Label htmlFor="email" className="text-foreground font-medium">
+                          Email Address *
+                        </Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="bg-background/50 border-border focus:border-neon-purple transition-colors"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-foreground">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="bg-background/50 border-border focus:border-neon-purple transition-colors"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
+                  {/* Message Section */}
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                      <MessageSquare className="w-5 h-5 text-neon-pink" />
+                      Message Details
+                    </h4>
+                    
+                    <div className="space-y-2">
+                      <Label htmlFor="subject" className="text-foreground font-medium">
+                        Subject *
+                      </Label>
+                      <Input
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="bg-background/50 border-border focus:border-neon-purple transition-colors"
+                        placeholder="What's this about?"
+                      />
+                    </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-foreground">
-                      Message
-                    </Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="bg-background/50 border-border focus:border-neon-purple transition-colors resize-none"
-                      placeholder="Tell me about your project or just say hello!"
-                    />
+                    <div className="space-y-2">
+                      <Label htmlFor="message" className="text-foreground font-medium">
+                        Message *
+                      </Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={5}
+                        className="bg-background/50 border-border focus:border-neon-purple transition-colors resize-none"
+                        placeholder="Tell me about your project, opportunity, or just say hello! I'd love to hear from you."
+                      />
+                    </div>
                   </div>
 
                   <Button
@@ -195,16 +298,16 @@ export const Contact = () => {
                     variant="hero"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full"
+                    className="w-full group"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center gap-2">
                         <div className="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
-                        Sending...
+                        Sending Message...
                       </div>
                     ) : (
                       <div className="flex items-center gap-2">
-                        <Send className="w-4 h-4" />
+                        <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         Send Message
                       </div>
                     )}

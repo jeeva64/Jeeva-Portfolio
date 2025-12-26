@@ -1,88 +1,72 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { 
-  Code, 
-  Database, 
-  Globe, 
-  Cpu, 
-  GitBranch, 
-  Smartphone,
-  Brain,
-  Settings
-} from "lucide-react";
 
 export const Skills = () => {
   const skillCategories = [
     {
-      title: "Programming",
-      icon: <Code className="w-6 h-6" />,
+      title: "Programming Languages",
       color: "neon-purple",
       skills: [
-        { name: "Java", level: 90 },
-        { name: "Python", level: 85 },
-        { name: "JavaScript", level: 80 },
-        { name: "TypeScript", level: 75 },
-        { name: "SQL", level: 85 }
+        { 
+          name: "Java", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
+        },
+        { 
+          name: "Python", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+        },
+        { 
+          name: "JavaScript", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+        },
+        { 
+          name: "C Programming", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
+        }
       ]
     },
     {
       title: "Web Development",
-      icon: <Globe className="w-6 h-6" />,
       color: "neon-cyan",
       skills: [
-        { name: "React", level: 85 },
-        { name: "Django", level: 80 },
-        { name: "HTML/CSS", level: 90 },
-        { name: "Bootstrap", level: 75 },
-        { name: "Tailwind CSS", level: 80 }
+        { 
+          name: "HTML5", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+        },
+        { 
+          name: "CSS3", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+        },
+        { 
+          name: "Bootstrap", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
+        },
+        { 
+          name: "Django", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+        }
       ]
     },
     {
-      title: "Database & Backend",
-      icon: <Database className="w-6 h-6" />,
+      title: "Development Tools",
       color: "neon-pink",
       skills: [
-        { name: "MySQL", level: 80 },
-        { name: "PostgreSQL", level: 70 },
-        { name: "REST APIs", level: 85 },
-        { name: "FastAPI", level: 70 },
-        { name: "Node.js", level: 65 }
-      ]
-    },
-    {
-      title: "AI & Machine Learning",
-      icon: <Brain className="w-6 h-6" />,
-      color: "neon-green",
-      skills: [
-        { name: "TensorFlow", level: 70 },
-        { name: "PyTorch", level: 65 },
-        { name: "Scikit-learn", level: 75 },
-        { name: "Pandas", level: 80 },
-        { name: "NumPy", level: 85 }
-      ]
-    },
-    {
-      title: "Tools & Technologies",
-      icon: <Settings className="w-6 h-6" />,
-      color: "neon-blue",
-      skills: [
-        { name: "Git", level: 85 },
-        { name: "GitHub", level: 90 },
-        { name: "Linux", level: 75 },
-        { name: "Docker", level: 60 },
-        { name: "VS Code", level: 95 }
-      ]
-    },
-    {
-      title: "Development",
-      icon: <Cpu className="w-6 h-6" />,
-      color: "neon-purple",
-      skills: [
-        { name: "Algorithm Design", level: 85 },
-        { name: "Data Structures", level: 90 },
-        { name: "System Design", level: 70 },
-        { name: "Testing", level: 75 },
-        { name: "Debugging", level: 95 }
+        { 
+          name: "Git", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+        },
+        { 
+          name: "GitHub", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+        },
+        { 
+          name: "VS Code", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"
+        },
+        { 
+          name: "MySQL", 
+          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+        }
       ]
     }
   ];
@@ -92,7 +76,7 @@ export const Skills = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.1
       }
     }
   };
@@ -108,7 +92,7 @@ export const Skills = () => {
 
   return (
     <section id="skills" className="py-20 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 lg:pl-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -122,12 +106,12 @@ export const Skills = () => {
               Skills & Technologies
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Technologies I work with and my proficiency levels
+              My technical expertise across various programming languages, frameworks, and tools
             </p>
           </motion.div>
 
-          {/* Skills Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Skills Grid - Three Equal Rows */}
+          <div className="grid md:grid-cols-3 gap-8">
             {skillCategories.map((category, index) => (
               <motion.div
                 key={index}
@@ -137,43 +121,42 @@ export const Skills = () => {
               >
                 <Card className="glass-card p-6 h-full hover:border-neon-purple/50 transition-all duration-300">
                   {/* Category Header */}
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className={`p-2 rounded-lg bg-${category.color}/10 text-${category.color}`}>
-                      {category.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold text-foreground">
+                  <div className="mb-6">
+                    <h3 className="text-xl font-bold text-foreground mb-2">
                       {category.title}
                     </h3>
+                    <div className={`w-12 h-1 bg-gradient-to-r from-${category.color} to-${category.color}/50 rounded-full`}></div>
                   </div>
 
-                  {/* Skills List */}
-                  <div className="space-y-4">
+                  {/* Skills Grid */}
+                  <div className="grid grid-cols-2 gap-4">
                     {category.skills.map((skill, skillIndex) => (
-                      <div key={skillIndex} className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm font-medium text-foreground">
-                            {skill.name}
-                          </span>
-                          <span className="text-xs text-muted-foreground">
-                            {skill.level}%
-                          </span>
-                        </div>
-                        
-                        {/* Progress Bar */}
-                        <div className="h-2 bg-muted/30 rounded-full overflow-hidden">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r from-${category.color} to-${category.color}/70 rounded-full`}
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.level}%` }}
-                            viewport={{ once: true }}
-                            transition={{ 
-                              duration: 0.8, 
-                              delay: skillIndex * 0.1,
-                              ease: "easeOut"
+                      <motion.div 
+                        key={skillIndex} 
+                        className="group text-center"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {/* Tech Logo */}
+                        <div className="w-16 h-16 mx-auto mb-3 rounded-xl bg-background/50 flex items-center justify-center group-hover:bg-background/80 transition-all duration-200 shadow-lg group-hover:shadow-xl">
+                          <img
+                            src={skill.logo}
+                            alt={skill.name}
+                            className="w-8 h-8 object-contain"
+                            onError={(e) => {
+                              // Fallback for missing logos
+                              e.currentTarget.style.display = 'none';
+                              e.currentTarget.nextElementSibling?.classList.remove('hidden');
                             }}
                           />
+                          <div className="w-8 h-8 bg-muted rounded hidden"></div>
                         </div>
-                      </div>
+                        
+                        {/* Skill Name */}
+                        <span className="text-sm font-medium text-foreground group-hover:text-neon-purple transition-colors">
+                          {skill.name}
+                        </span>
+                      </motion.div>
                     ))}
                   </div>
                 </Card>

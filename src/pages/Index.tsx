@@ -15,7 +15,7 @@ const Index = () => {
       <Navigation />
       <SocialDock />
       
-      <main>
+      <main className="pb-20 lg:pb-0">
         <Hero />
         <About />
         <Projects />

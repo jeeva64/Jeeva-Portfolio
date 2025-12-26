@@ -9,13 +9,13 @@ export const Certifications = () => {
   const certifications = [
     {
       id: 1,
-      title: "NPTEL - Object Oriented Programming",
+      title: "Fundamentals of Object Oriented Programming",
       issuer: "NPTEL (IIT Madras)",
       date: "2025",
       status: "Completed",
       description: "Comprehensive course covering OOP concepts, design patterns, and advanced programming techniques in Java.",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
-      credentialUrl: "#",
+      credentialUrl: "https://internalapp.nptel.ac.in/NOC/NOC25/SEM1/Ecertificates/106/noc25-cs34/Course/NPTEL25CS34S55870186104309068.pdf",
       skills: ["Java", "OOP", "Design Patterns", "Software Engineering"],
       color: "neon-purple"
     },
@@ -27,22 +27,22 @@ export const Certifications = () => {
       status: "Certified",
       description: "Industry-focused certification program covering professional skills, communication, and technical competencies.",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=center",
-      credentialUrl: "#",
+      credentialUrl: "https://drive.google.com/file/d/1Bf2uodYz763pWH5nnaDKu-Qfmb9WwyGS/view",
       skills: ["Professional Skills", "Communication", "Leadership", "Project Management"],
       color: "neon-cyan"
     },
     {
       id: 3,
-      title: "NPTEL - Programming in C",
+      title: "Introduction to Programming in C",
       issuer: "NPTEL (IIT Kharagpur)",
       date: "2023",
       status: "Completed",
       description: "Fundamental programming course covering C language concepts, data structures, and algorithmic thinking.",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop&crop=center",
-      credentialUrl: "#",
-      skills: ["C Programming", "Data Structures", "Algorithms", "Problem Solving"],
+      credentialUrl: "https://archive.nptel.ac.in/content/noc/NOC23/SEM1/Ecertificates/106/noc23-cs02/Course/NPTEL23CS02S2573176003056990.jpg",
+      skills: ["C Programming", "Problem Solving"],
       color: "neon-pink"
-    },
+    }/*,
     {
       id: 4,
       title: "Full Stack Web Development",
@@ -78,7 +78,7 @@ export const Certifications = () => {
       credentialUrl: "#",
       skills: ["AWS", "Cloud Computing", "DevOps", "Infrastructure"],
       color: "neon-cyan"
-    }
+    }*/
   ];
 
   const containerVariants = {
@@ -100,9 +100,13 @@ export const Certifications = () => {
     }
   };
 
+  const handleViewCredential = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section id="certifications" className="py-20 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 lg:pl-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -111,7 +115,7 @@ export const Certifications = () => {
           className="max-w-7xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
+          <motion.div variants={itemVariants} className="text-center mb-10">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Certifications & Learning
             </h2>
@@ -159,7 +163,14 @@ export const Certifications = () => {
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-3">
                       <Award className={`text-${cert.color} flex-shrink-0 mt-1`} size={20} />
-                      <ExternalLink className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer" size={16} />
+                      <ExternalLink 
+                        className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer" 
+                        size={16}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleViewCredential(cert.credentialUrl);
+                        }}
+                      />
                     </div>
 
                     <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
@@ -219,7 +230,14 @@ export const Certifications = () => {
                               ))}
                             </div>
                           </div>
-                          <button className={`w-full py-2 rounded-lg text-sm font-medium transition-colors bg-${cert.color}/20 text-${cert.color} hover:bg-${cert.color}/30`}>
+                          <button 
+                            className={`w-full py-2 rounded-lg text-sm font-medium transition-colors bg-${cert.color}/20 text-${cert.color} hover:bg-${cert.color}/30 flex items-center justify-center gap-2`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleViewCredential(cert.credentialUrl);
+                            }}
+                          >
+                            <ExternalLink size={14} />
                             View Credential
                           </button>
                         </div>
