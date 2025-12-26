@@ -58,61 +58,7 @@ export const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Profile Image */}
-            <motion.div variants={itemVariants} className="order-2 lg:order-1">
-              <div className="relative max-w-md mx-auto">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8 }}
-                  className="relative"
-                >
-                  <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-neon-purple/30 shadow-2xl mx-auto">
-                    <img
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face"
-                      alt="Jeeva Loganathan"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  
-                  {/* Glowing effect */}
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-purple/20 to-neon-cyan/20 animate-pulse"></div>
-                </motion.div>
-
-                {/* Floating Code Elements */}
-                <motion.div
-                  animate={{ 
-                    y: [0, -10, 0],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ 
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  className="absolute -top-4 -right-4 bg-neon-purple/20 text-neon-purple px-3 py-1 rounded-lg text-sm font-mono"
-                >
-                  {"{ }"}
-                </motion.div>
-
-                <motion.div
-                  animate={{ 
-                    y: [0, 10, 0],
-                    rotate: [0, -5, 0]
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                  className="absolute -bottom-4 -left-4 bg-neon-cyan/20 text-neon-cyan px-3 py-1 rounded-lg text-sm font-mono"
-                >
-                  &lt;/&gt;
-                </motion.div>
-              </div>
-            </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
 
             {/* About Content */}
             <motion.div variants={itemVariants} className="order-1 lg:order-2">
