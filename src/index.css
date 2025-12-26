@@ -5,8 +5,63 @@
 /* Dark Neon Portfolio Design System - All colors MUST be HSL */
 
 @layer base {
+  /* Light Theme */
   :root {
-    /* Core Dark Theme */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 10%;
+
+    /* Neon Colors */
+    --neon-purple: 270 91% 55%;
+    --neon-cyan: 189 94% 35%;
+    --neon-pink: 330 81% 50%;
+    --neon-blue: 217 91% 50%;
+    --neon-green: 158 64% 42%;
+
+    /* Glass Morphism */
+    --glass: 240 10% 95% / 0.8;
+    --glass-border: 0 0% 0% / 0.1;
+
+    /* Card System */
+    --card: 0 0% 98%;
+    --card-foreground: 240 10% 10%;
+    --card-glow: 270 91% 67% / 0.2;
+
+    /* Interactive Elements */
+    --primary: 270 91% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 270 91% 55% / 0.3;
+
+    --secondary: 189 94% 35%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-glow: 189 94% 35% / 0.3;
+
+    --accent: 330 81% 50%;
+    --accent-foreground: 0 0% 100%;
+    --accent-glow: 330 81% 50% / 0.3;
+
+    /* Muted Elements */
+    --muted: 240 5% 92%;
+    --muted-foreground: 240 5% 40%;
+
+    /* Borders & Inputs */
+    --border: 240 5% 85%;
+    --input: 240 5% 92%;
+    --ring: 270 91% 55%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(270 91% 55%) 0%, hsl(189 94% 35%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(330 81% 50%) 0%, hsl(270 91% 55%) 100%);
+    --gradient-bg: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(240 20% 98%) 50%, hsl(0 0% 100%) 100%);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+  }
+
+  /* Dark Theme */
+  .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
 
@@ -52,12 +107,6 @@
     --gradient-primary: linear-gradient(135deg, hsl(270 91% 67%) 0%, hsl(189 94% 43%) 100%);
     --gradient-secondary: linear-gradient(135deg, hsl(330 81% 60%) 0%, hsl(270 91% 67%) 100%);
     --gradient-bg: linear-gradient(135deg, hsl(240 10% 3.9%) 0%, hsl(240 15% 5%) 50%, hsl(240 10% 3.9%) 100%);
-
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --radius: 0.75rem;
   }
 }
 
