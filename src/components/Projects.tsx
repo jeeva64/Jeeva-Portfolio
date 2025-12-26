@@ -6,6 +6,7 @@ import { ExternalLink, Github, FolderOpen, Calendar } from "lucide-react";
 export const Projects = () => {
   const projects = [
     {
+      id: 1,
       title: "AidCare",
       subtitle: "Orphanage Donation Management System",
       description: "A comprehensive web application built with Django and MySQL for managing orphanage donations, volunteer coordination, and administrative tasks. Features real-time tracking, and responsive design.",
@@ -13,9 +14,12 @@ export const Projects = () => {
       github: "https://github.com/jeeva64/Aidcare",
       demo: "https://aidcare.vercel.app/",
       status: "Live",
-      featured: true
+      featured: true,
+      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=400&fit=crop",
+      date: "2024"
     },
     {
+      id: 2,
       title: "Portfolio Website",
       subtitle: "Personal Portfolio",
       description: "Modern, responsive portfolio website with dark theme, neon aesthetics, and smooth animations. Built with React, Framer Motion, and Three.js for an immersive experience.",
@@ -23,18 +27,10 @@ export const Projects = () => {
       github: "https://github.com/jeeva64/Jeeva-Portfolio",
       demo: "#",
       status: "Live",
-      featured: true
-    }/*,
-    {
-      title: "Coming Soon",
-      subtitle: "AI-Powered Project",
-      description: "Working on an exciting AI project that combines machine learning with modern web technologies. Stay tuned for updates!",
-      technologies: ["Python", "TensorFlow", "React", "FastAPI"],
-      github: "#",
-      demo: "#",
-      status: "In Development",
-      featured: false
-    }*/
+      featured: true,
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+      date: "2025"
+    }
   ];
 
   const containerVariants = {
@@ -149,5 +145,4 @@ export const Projects = () => {
       </div>
     </section>
   );
-};
 };
