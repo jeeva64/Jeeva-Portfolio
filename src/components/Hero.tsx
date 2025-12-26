@@ -6,6 +6,7 @@ import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
 import { useRef } from "react";
 import { Mesh } from "three";
 import { Download, Eye } from "lucide-react";
+import profileImage from "@/assets/profile.png";
 
 const AnimatedSphere = () => {
   const meshRef = useRef<Mesh>(null);
@@ -162,9 +163,9 @@ export const Hero = () => {
               >
                 <div className="w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden border-4 border-neon-purple/30 shadow-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=500&fit=crop&crop=face"
+                    src={profileImage}
                     alt="Jeeva Loganathan"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 
