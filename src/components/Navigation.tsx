@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -67,6 +68,8 @@ export const Navigation = () => {
                 </motion.button>
               ))}
               
+              <ThemeToggle />
+              
               <Button 
                 variant="neon" 
                 size="sm"
@@ -112,9 +115,14 @@ export const Navigation = () => {
               </motion.button>
             ))}
             
+            <div className="flex items-center justify-between mt-8">
+              <span className="text-muted-foreground">Theme</span>
+              <ThemeToggle />
+            </div>
+            
             <Button 
               variant="neon" 
-              className="w-full mt-8"
+              className="w-full mt-4"
               onClick={() => scrollToSection('#contact')}
             >
               Hire Me
