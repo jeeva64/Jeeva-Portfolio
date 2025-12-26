@@ -5,17 +5,17 @@ export const About = () => {
   const education = [
     {
       degree: "MSc in Artificial Intelligence",
-      institution: "St. Joseph's College",
-      period: "2025 – 2027",
-      status: "Upcoming",
-      description: "Advanced study in AI, Machine Learning, and Data Science"
+      institution: "St. Joseph's College (Autonomous), Tiruchirappalli",
+      period: "July 2025 – May 2027",
+      status: "GPA 8.89/10",
+      description: "Advanced study in AI, Machine Learning, Deep Learning, and Data Science"
     },
     {
       degree: "BSc in Computer Science",
-      institution: "St. Joseph's College",
-      period: "2022 – 2025",
+      institution: "St. Joseph's College (Autonomous), Tiruchirappalli",
+      period: "July 2022 – May 2025",
       status: "GPA 8.38/10",
-      description: "Strong foundation in programming, algorithms, and software development"
+      description: "Strong foundation in programming, algorithms, DSA, DBMS, OS, and Computer Networks"
     }
   ];
 
@@ -68,18 +68,20 @@ export const About = () => {
                 </h3>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    I'm a passionate Software Developer with a deep interest in Artificial Intelligence 
-                    and modern web technologies. My journey in computer science has been driven by 
-                    curiosity and the desire to solve real-world problems through code.
+                    I'm a Backend Engineer with expertise in Python, Django, and database systems. 
+                    My passion lies in building secure, scalable backend solutions and solving 
+                    complex algorithmic challenges through consistent practice on LeetCode.
                   </p>
                   <p>
-                    Currently pursuing my Bachelor's degree in Computer Science with an impressive 
-                    GPA of 8.38/10, and excited to continue with my Master's in AI starting 2025. 
-                    I thrive on learning new technologies and building projects that make a difference.
+                    Having completed my B.Sc in Computer Science with a GPA of 8.38/10, I'm now 
+                    pursuing my Master's in Artificial Intelligence at St. Joseph's College. 
+                    I've solved 250+ LeetCode problems and earned the 200-day consistency badge, 
+                    demonstrating my commitment to continuous learning and problem-solving.
                   </p>
                   <p>
-                    When I'm not coding, you'll find me participating in hackathons, organizing 
-                    tech events, or exploring the latest developments in AI and machine learning.
+                    Beyond coding, I actively contribute to the tech community by organizing events 
+                    like WebSprint'25 hackathon and TechRise'24 symposium. I've won 7 intercollegiate 
+                    technical competitions and was crowned Mr.VARIT 2K25 National Champion in debugging.
                   </p>
                 </div>
               </Card>

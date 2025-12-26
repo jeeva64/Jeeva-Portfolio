@@ -37,26 +37,21 @@ export const SocialDock = () => {
 
   return (
     <>
-      {/* Desktop Social Dock */}
+      {/* Desktop Social Dock - positioned to avoid overlapping content */}
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="fixed left-4 top-1/2 transform -translate-y-1/2 z-30 hidden lg:block"
-        style={{ 
-          top: '50%',
-          transform: 'translateY(-50%)',
-          pointerEvents: 'auto'
-        }}
+        className="fixed left-2 top-1/2 transform -translate-y-1/2 z-20 hidden xl:block"
       >
-        <div className="glass-card p-3 rounded-2xl space-y-3 shadow-lg">
+        <div className="glass-card p-2 rounded-2xl space-y-2 shadow-lg backdrop-blur-md bg-background/30">
           {socialLinks.map((social, index) => (
             <motion.a
               key={index}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`block p-3 text-muted-foreground ${social.color} transition-all duration-300 rounded-xl hover:bg-background/20 group`}
+              className={`block p-2.5 text-muted-foreground ${social.color} transition-all duration-300 rounded-xl hover:bg-background/40 group`}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               title={social.name}
@@ -65,7 +60,7 @@ export const SocialDock = () => {
                 {social.icon}
                 
                 {/* Tooltip */}
-                <div className="absolute left-full ml-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
+                <div className="absolute left-full ml-3 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
                   <div className="glass-card px-3 py-2 rounded-lg whitespace-nowrap text-sm font-medium shadow-lg">
                     {social.name}
                     <div className="absolute right-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-r-4 border-r-card border-y-4 border-y-transparent"></div>
@@ -74,9 +69,6 @@ export const SocialDock = () => {
               </div>
             </motion.a>
           ))}
-          
-          {/* Connecting line */}
-          <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 w-0.5 h-16 bg-gradient-to-b from-neon-purple to-transparent"></div>
         </div>
       </motion.div>
 

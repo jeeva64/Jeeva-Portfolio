@@ -1,70 +1,91 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Trophy, Users, Award, Code, Calendar, ArrowRight } from "lucide-react";
+import { Trophy, Users, Award, Code, Calendar, ArrowRight, Flame, Target, Zap } from "lucide-react";
 
 export const Achievements = () => {
+  const leetcodeBadges = [
+    {
+      name: "200 Days Badge",
+      year: "2025",
+      icon: Flame,
+      description: "Maintained 200+ days of consistent problem-solving practice"
+    },
+    {
+      name: "100 Days Badge",
+      year: "2025",
+      icon: Target,
+      description: "Achieved 100 days streak of daily coding practice"
+    },
+    {
+      name: "50 Days Badge",
+      year: "2025",
+      icon: Zap,
+      description: "Started the journey with 50 days of dedication"
+    }
+  ];
+
   const achievements = [
     {
       id: 1,
-      title: "Outstanding Performer in college",
+      title: "LeetCode 250+ Problems Solved",
+      category: "Coding",
+      date: "2025",
+      description: "Solved 250+ problems on LeetCode including 126 Easy, 111 Medium, and 14 Hard problems. Earned the 200 Days consistency badge through long-term DSA practice and actively participated in weekly contests.",
+      icon: Code,
+      image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=400&h=300&fit=crop&crop=center",
+      color: "neon-green"
+    },
+    {
+      id: 2,
+      title: "Outstanding Performer - Batch Endowment Cash Prize",
       category: "Academic",
-      date: "January 2024",
-      description: "Led a team of 4 developers to victory in the 48-hour debugging marathon, solving complex algorithmic challenges.",
+      date: "College Day 2025",
+      description: "Awarded Outstanding Performer with Batch Endowment Cash Prize for achieving top academic distinction across 5 semesters of B.Sc Computer Science.",
       icon: Trophy,
       image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=300&fit=crop&crop=center",
       color: "neon-cyan"
     },
     {
-      id: 2,
-      title: "Bug Hunt Champion",
+      id: 3,
+      title: "Mr.VARIT 2K25 National Champion",
       category: "Competition",
-      date: "March 2024",
-      description: "First place winner in the annual Bug Hunt competition, successfully identifying and fixing 15 critical bugs in under 2 hours.",
-      icon: Code,
+      date: "2025",
+      description: "Crowned Mr.VARIT 2K25 National Champion by winning 1st place in Error Exhibit debugging competition among participants from 15+ colleges.",
+      icon: Award,
       image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop&crop=top",
       color: "neon-purple"
     },
     {
-      id: 3,
-      title: "TechRise Event Organizer",
-      category: "Leadership",
-      date: "November 2023",
-      description: "Successfully organized and managed TechRise 2023, a tech symposium with 50+ participants and 20+ speakers.",
-      icon: Users,
-      image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=300&fit=crop&crop=center",
-      color: "neon-pink"
-    },
-    {
       id: 4,
-      title: "WebSprint Hackathon Event Organizer",
-      category: "Leadership",
-      date: "September 2023",
-      description: "Successfully organized and managed WebSprint Hackathon, a Hackathon with 100+ participants from 10+ colleges.", 
-      icon: Award,
-      image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=300&fit=crop&crop=center",
-      color: "neon-green"
-    },
-    {
-      id: 5,
-      title: "College Symposium Winner",
-      category: "Academic",
-      date: "April 2023",
-      description: "Best project award for developing an innovative AI-powered solution for student management systems.",
+      title: "7x Intercollegiate Symposium Winner",
+      category: "Competition",
+      date: "2023-2025",
+      description: "Achieved victories in 7 technical events at intercollegiate symposiums, demonstrating strong proficiency in code debugging, data structures and algorithms, and paper presentation.",
       icon: Trophy,
       image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop&crop=center",
       color: "neon-blue"
     },
-    /*{
+    {
+      id: 5,
+      title: "WebSprint'25 Regional Hackathon Coordinator",
+      category: "Leadership",
+      date: "2025",
+      description: "Coordinated WebSprint'25 regional hackathon with participants from 10+ colleges, managing event logistics and technical challenges.",
+      icon: Users,
+      image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=300&fit=crop&crop=center",
+      color: "neon-green"
+    },
+    {
       id: 6,
-      title: "Open Source Contributor",
-      category: "Development",
-      date: "Ongoing",
-      description: "Active contributor to multiple open-source projects with 50+ merged pull requests and 1000+ GitHub stars.",
-      icon: Code,
-      image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=300&fit=crop&crop=center",
-      color: "neon-cyan"
-    }*/
+      title: "TechRise'24 Technical Symposium Organizer",
+      category: "Leadership",
+      date: "2024",
+      description: "Managed TechRise'24 technical symposium as core organizer, overseeing event planning, speaker coordination, and participant experience.",
+      icon: Users,
+      image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=400&h=300&fit=crop&crop=center",
+      color: "neon-pink"
+    }
   ];
 
   const containerVariants = {
@@ -104,6 +125,45 @@ export const Achievements = () => {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Celebrating milestones and recognitions earned through dedication and hard work
             </p>
+          </motion.div>
+
+          {/* LeetCode Badges Section */}
+          <motion.div variants={itemVariants} className="mb-16">
+            <h3 className="text-2xl font-bold mb-8 text-center text-neon-green">
+              LeetCode Badges
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {leetcodeBadges.map((badge, index) => {
+                const IconComponent = badge.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Card className="glass-card p-6 text-center h-full border-neon-green/20 hover:border-neon-green/50 transition-all duration-300">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-neon-green/20 flex items-center justify-center">
+                        <IconComponent className="w-8 h-8 text-neon-green" />
+                      </div>
+                      <h4 className="text-lg font-bold text-foreground mb-1">{badge.name}</h4>
+                      <span className="text-sm text-neon-green font-medium">{badge.year}</span>
+                      <p className="text-sm text-muted-foreground mt-3">{badge.description}</p>
+                    </Card>
+                  </motion.div>
+                );
+              })}
+            </div>
+            <div className="text-center mt-6">
+              <a 
+                href="https://leetcode.com/u/jeevaloganathan/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-neon-green hover:underline font-medium"
+              >
+                <Code className="w-4 h-4" />
+                View LeetCode Profile
+              </a>
+            </div>
           </motion.div>
 
           {/* Achievement Timeline */}
