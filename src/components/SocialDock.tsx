@@ -72,28 +72,22 @@ export const SocialDock = () => {
         </div>
       </motion.div>
 
-      {/* Mobile Social Dock */}
+      {/* Mobile Social Dock - positioned higher to avoid overlap */}
       <motion.div
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-30 lg:hidden"
-        style={{ 
-          bottom: '1rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          pointerEvents: 'auto'
-        }}
+        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-30 xl:hidden"
       >
-        <div className="glass-card p-2 rounded-2xl shadow-lg">
-          <div className="flex space-x-1">
+        <div className="glass-card p-1.5 sm:p-2 rounded-2xl shadow-lg backdrop-blur-md bg-background/50 border border-border/50">
+          <div className="flex space-x-0.5 sm:space-x-1">
             {socialLinks.map((social, index) => (
               <motion.a
                 key={index}
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`block p-2 text-muted-foreground ${social.color} transition-all duration-300 rounded-xl hover:bg-background/20`}
+                className={`block p-2 sm:p-2.5 text-muted-foreground ${social.color} transition-all duration-300 rounded-xl hover:bg-background/30`}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 title={social.name}
