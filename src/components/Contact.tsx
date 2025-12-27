@@ -103,8 +103,8 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="container mx-auto px-6 lg:pl-16">
+    <section id="contact" className="py-20 pb-32 lg:pb-20 relative">
+      <div className="container mx-auto px-6 lg:px-16 xl:pl-24">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -113,31 +113,30 @@ export const Contact = () => {
           className="max-w-6xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
-              Get In Touch
+          <motion.div variants={itemVariants} className="text-center mb-12 lg:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
+              Hire Me
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Have a project in mind or want to discuss opportunities? I'd love to hear from you!
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
+              Looking for a dedicated developer? Let's discuss how I can contribute to your team!
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Info */}
-            <motion.div variants={itemVariants} className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-bold mb-6 text-neon-cyan">
+            <motion.div variants={itemVariants} className="space-y-6 lg:space-y-8">
+              <div className="text-center lg:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold mb-4 text-neon-cyan">
                   Let's Connect
                 </h3>
-                <p className="text-muted-foreground leading-relaxed mb-8">
+                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                   I'm always open to discussing new opportunities, innovative projects, 
-                  or just having a conversation about technology. Feel free to reach out 
-                  through any of the channels below.
+                  or just having a conversation about technology.
                 </p>
               </div>
 
               {/* Contact Methods */}
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {contactInfo.map((info, index) => (
                   <motion.a
                     key={index}
@@ -146,16 +145,16 @@ export const Contact = () => {
                     rel="noopener noreferrer"
                     variants={itemVariants}
                     whileHover={{ x: 5 }}
-                    className="flex items-center gap-4 p-4 glass-card rounded-lg hover:border-neon-purple/50 transition-all duration-300 group"
+                    className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 glass-card rounded-lg hover:border-neon-purple/50 transition-all duration-300 group"
                   >
-                    <div className="p-3 bg-neon-purple/10 text-neon-purple rounded-lg group-hover:bg-neon-purple/20 transition-colors">
+                    <div className="p-2 sm:p-3 bg-neon-purple/10 text-neon-purple rounded-lg group-hover:bg-neon-purple/20 transition-colors flex-shrink-0">
                       {info.icon}
                     </div>
-                    <div className="flex-1">
-                      <p className="text-sm text-muted-foreground">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs sm:text-sm text-muted-foreground">
                         {info.title}
                       </p>
-                      <p className="font-medium text-foreground">
+                      <p className="font-medium text-foreground text-sm sm:text-base truncate">
                         {info.value}
                       </p>
                     </div>
@@ -165,7 +164,7 @@ export const Contact = () => {
                         e.stopPropagation();
                         handleCopyLink(info.copyText, info.title);
                       }}
-                      className="p-2 text-muted-foreground hover:text-neon-purple transition-colors opacity-0 group-hover:opacity-100"
+                      className="p-2 text-muted-foreground hover:text-neon-purple transition-colors flex-shrink-0"
                       title={`Copy ${info.title}`}
                     >
                       {copiedLink === info.title ? (
@@ -178,23 +177,33 @@ export const Contact = () => {
                 ))}
               </div>
 
-              {/* Additional Information */}
-              <div className="mt-8">
-                <h4 className="text-lg font-semibold text-foreground mb-4">
+              {/* What I'm Looking For */}
+              <div className="space-y-3">
+                <h4 className="text-base sm:text-lg font-semibold text-foreground text-center lg:text-left">
                   What I'm Looking For
                 </h4>
-                <div className="space-y-3">
-                  <div className="p-4 glass-card rounded-lg">
-                    <h5 className="font-semibold text-foreground mb-2">Internship / Full-Time Opportunities</h5>
-                    <p className="text-sm text-muted-foreground">
-                      Software Developer, Full-Stack Developer, or AI/ML Engineer positions
-                    </p>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                  <div className="p-3 sm:p-4 glass-card rounded-lg">
+                    <div className="flex items-start gap-3">
+                      <Award className="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h5 className="font-semibold text-foreground text-sm sm:text-base mb-1">Internship / Full-Time</h5>
+                        <p className="text-xs sm:text-sm text-muted-foreground">
+                          Software Developer, Full-Stack, or AI/ML roles
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-4 glass-card rounded-lg">
-                    <h5 className="font-semibold text-foreground mb-2">Collaborations</h5>
-                    <p className="text-sm text-muted-foreground">
-                      Open source contributions, hackathons, and innovative tech projects
-                    </p>
+                  <div className="p-3 sm:p-4 glass-card rounded-lg">
+                    <div className="flex items-start gap-3">
+                      <Star className="w-5 h-5 text-neon-purple flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h5 className="font-semibold text-foreground text-sm sm:text-base mb-1">Collaborations</h5>
+                        <p className="text-xs sm:text-sm text-muted-foreground">
+                          Open source, hackathons, innovative projects
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

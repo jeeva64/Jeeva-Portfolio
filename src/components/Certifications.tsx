@@ -14,10 +14,11 @@ export const Certifications = () => {
       date: "2025",
       status: "Completed",
       description: "Comprehensive course on DBMS fundamentals covering relational models, SQL, normalization, and database design.",
-      image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop&crop=center",
+      thumbnail: "/certificates/nptel-dbms.jpg",
       credentialUrl: "https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs145/Course/NPTEL25CS145S64900077609169333.pdf",
       skills: ["Relational Database", "SQL", "Indexing", "ER Diagram", "Normalization", "Views"],
-      color: "neon-blue"
+      color: "neon-blue",
+      bgGradient: "from-blue-500/20 to-cyan-500/20"
     },
     {
       id: 2,
@@ -26,10 +27,11 @@ export const Certifications = () => {
       date: "2025",
       status: "Completed",
       description: "Comprehensive course covering OOP concepts, design patterns, and advanced programming techniques in Java.",
-      image: "https://internalapp.nptel.ac.in/NOC/NOC25/SEM1/Ecertificates/106/noc25-cs34/Course/NPTEL25CS34S55870186104309068.pdf",
+      thumbnail: "/certificates/nptel-oop.jpg",
       credentialUrl: "https://internalapp.nptel.ac.in/NOC/NOC25/SEM1/Ecertificates/106/noc25-cs34/Course/NPTEL25CS34S55870186104309068.pdf",
       skills: ["Java", "OOP", "Design Patterns", "Software Engineering"],
-      color: "neon-purple"
+      color: "neon-purple",
+      bgGradient: "from-purple-500/20 to-pink-500/20"
     },
     {
       id: 3,
@@ -38,10 +40,11 @@ export const Certifications = () => {
       date: "2024",
       status: "Certified",
       description: "Industry-focused certification program covering professional skills, communication, and technical competencies.",
-      image: "https://drive.google.com/file/d/1Bf2uodYz763pWH5nnaDKu-Qfmb9WwyGS/view",
+      thumbnail: "/certificates/tcs-ion.jpg",
       credentialUrl: "https://drive.google.com/file/d/1Bf2uodYz763pWH5nnaDKu-Qfmb9WwyGS/view",
       skills: ["Professional Skills", "Communication", "Leadership", "Project Management"],
-      color: "neon-cyan"
+      color: "neon-cyan",
+      bgGradient: "from-cyan-500/20 to-teal-500/20"
     },
     {
       id: 4,
@@ -50,47 +53,12 @@ export const Certifications = () => {
       date: "2023",
       status: "Completed",
       description: "Fundamental programming course covering C language concepts, and algorithmic thinking.",
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop&crop=center",
+      thumbnail: "https://archive.nptel.ac.in/content/noc/NOC23/SEM1/Ecertificates/106/noc23-cs02/Course/NPTEL23CS02S2573176003056990.jpg",
       credentialUrl: "https://archive.nptel.ac.in/content/noc/NOC23/SEM1/Ecertificates/106/noc23-cs02/Course/NPTEL23CS02S2573176003056990.jpg",
       skills: ["C Programming", "Problem Solving"],
-      color: "neon-pink"
-    }/*,
-    {
-      id: 4,
-      title: "Full Stack Web Development",
-      issuer: "FreeCodeCamp",
-      date: "2023",
-      status: "Certified",
-      description: "Complete web development certification covering frontend and backend technologies with hands-on projects.",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop&crop=center",
-      credentialUrl: "#",
-      skills: ["HTML/CSS", "JavaScript", "React", "Node.js", "MongoDB"],
-      color: "neon-green"
-    },
-    {
-      id: 5,
-      title: "Python for Data Science",
-      issuer: "Coursera (IBM)",
-      date: "2023",
-      status: "Completed",
-      description: "Data science fundamentals using Python, covering data analysis, visualization, and machine learning basics.",
-      image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=400&h=300&fit=crop&crop=center",
-      credentialUrl: "#",
-      skills: ["Python", "Pandas", "NumPy", "Data Visualization", "Machine Learning"],
-      color: "neon-blue"
-    },
-    {
-      id: 6,
-      title: "AWS Cloud Practitioner",
-      issuer: "Amazon Web Services",
-      date: "2024",
-      status: "In Progress",
-      description: "Foundation-level certification covering AWS cloud concepts, services, and best practices.",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop&crop=center",
-      credentialUrl: "#",
-      skills: ["AWS", "Cloud Computing", "DevOps", "Infrastructure"],
-      color: "neon-cyan"
-    }*/
+      color: "neon-pink",
+      bgGradient: "from-pink-500/20 to-rose-500/20"
+    }
   ];
 
   const containerVariants = {
@@ -152,23 +120,32 @@ export const Certifications = () => {
                   className="glass-card overflow-hidden h-full cursor-pointer group"
                   onClick={() => setSelectedCert(selectedCert === cert.id ? null : cert.id)}
                 >
-                  {/* Certificate Image */}
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={cert.image}
-                      alt={cert.title}
-                      className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute top-4 right-4">
-                      <span className={`px-3 py-1 text-xs font-medium rounded-full ${
+                  {/* Certificate Thumbnail */}
+                  <div className={`relative overflow-hidden h-48 bg-gradient-to-br ${cert.bgGradient}`}>
+                    <div className="absolute inset-0 flex items-center justify-center p-4">
+                      <div className="relative w-full h-full rounded-lg overflow-hidden shadow-lg border border-border/30">
+                        <img
+                          src={cert.thumbnail}
+                          alt={cert.title}
+                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement;
+                            target.style.display = 'none';
+                            target.parentElement!.classList.add('flex', 'items-center', 'justify-center', 'bg-gradient-to-br', cert.bgGradient);
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className={`px-3 py-1 text-xs font-medium rounded-full backdrop-blur-sm ${
                         cert.status === 'Completed' || cert.status === 'Certified' 
-                          ? 'bg-neon-green/20 text-neon-green' 
-                          : 'bg-neon-cyan/20 text-neon-cyan'
+                          ? 'bg-neon-green/30 text-neon-green border border-neon-green/30' 
+                          : 'bg-neon-cyan/30 text-neon-cyan border border-neon-cyan/30'
                       }`}>
                         {cert.status}
                       </span>
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
                   {/* Certificate Content */}
