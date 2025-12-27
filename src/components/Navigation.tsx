@@ -43,8 +43,8 @@ export const Navigation = () => {
             : 'bg-transparent'
         }`}
       >
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 py-4">
+          <div className="flex items-center justify-between w-full">
             {/* Logo */}
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -80,12 +80,15 @@ export const Navigation = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-foreground"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            <div className="flex items-center gap-2 md:hidden">
+              <ThemeToggle />
+              <button
+                className="text-foreground p-2"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
@@ -114,11 +117,6 @@ export const Navigation = () => {
                 {item.name}
               </motion.button>
             ))}
-            
-            <div className="flex items-center justify-between mt-8">
-              <span className="text-muted-foreground">Theme</span>
-              <ThemeToggle />
-            </div>
             
             <Button 
               variant="neon" 
