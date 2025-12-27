@@ -10,13 +10,13 @@ export const Certifications = () => {
     {
       id: 1,
       title: "Database Management System",
-      issuer: "NPTEL (IIT ROORKEE)",
+      issuer: "NPTEL (IIT Kharagpur)",
       date: "2025",
       status: "Completed",
-      description: "",
-      image: "https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs145/Course/NPTEL25CS145S64900077609169333.pdf",
+      description: "Comprehensive course on DBMS fundamentals covering relational models, SQL, normalization, and database design.",
+      image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=400&h=300&fit=crop&crop=center",
       credentialUrl: "https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs145/Course/NPTEL25CS145S64900077609169333.pdf",
-      skills: ["Relational Database", "SQL", "Index", "ER Diagram", "Views"],
+      skills: ["Relational Database", "SQL", "Indexing", "ER Diagram", "Normalization", "Views"],
       color: "neon-blue"
     },
     {
