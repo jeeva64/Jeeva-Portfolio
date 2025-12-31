@@ -81,7 +81,7 @@ export const Projects = () => {
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <Card className="glass-card overflow-hidden h-full cursor-pointer group">
+                <Card className="glass-card overflow-hidden h-full group">
                   {/* Project Image */}
                   <div className="relative overflow-hidden">
                     <img
@@ -90,21 +90,12 @@ export const Projects = () => {
                       className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Live Demo Button */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Button size="sm" variant="secondary" className="text-xs">
-                        <ExternalLink className="w-3 h-3 mr-1" />
-                        Live Demo
-                      </Button>
-                    </div>
                   </div>
 
                   {/* Project Content */}
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-3">
                       <FolderOpen className="text-neon-purple flex-shrink-0 mt-1" size={20} />
-                      <ExternalLink className="text-muted-foreground hover:text-foreground transition-colors cursor-pointer" size={16} />
                     </div>
 
                     <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors">
@@ -121,10 +112,10 @@ export const Projects = () => {
                     </p>
 
                     {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.slice(0, 3).map((tech, index) => (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.slice(0, 3).map((tech, techIndex) => (
                         <span
-                          key={index}
+                          key={techIndex}
                           className="px-2 py-1 text-xs rounded-md bg-neon-purple/20 text-neon-purple"
                         >
                           {tech}
@@ -135,6 +126,32 @@ export const Projects = () => {
                           +{project.technologies.length - 3}
                         </span>
                       )}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex gap-3">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                      >
+                        <Button variant="outline" size="sm" className="w-full">
+                          <Github className="w-4 h-4 mr-2" />
+                          GitHub
+                        </Button>
+                      </a>
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                      >
+                        <Button variant="secondary" size="sm" className="w-full">
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Live Demo
+                        </Button>
+                      </a>
                     </div>
                   </div>
                 </Card>
