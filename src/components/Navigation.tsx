@@ -49,8 +49,8 @@ export const Navigation = () => {
       // Close mobile menu with animation delay
       setIsMobileMenuOpen(false);
       
-      // Smooth scroll with offset for fixed header
-      const yOffset = -80;
+      // Smooth scroll with minimal offset for fixed header
+      const yOffset = -72;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       
       window.scrollTo({
