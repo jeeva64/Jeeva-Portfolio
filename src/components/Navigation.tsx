@@ -50,7 +50,7 @@ export const Navigation = () => {
       setIsMobileMenuOpen(false);
       
       // Smooth scroll with minimal offset for fixed header
-      const yOffset = -72;
+      const yOffset = -64;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       
       window.scrollTo({
