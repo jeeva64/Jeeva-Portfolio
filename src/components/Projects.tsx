@@ -25,7 +25,7 @@ export const Projects = () => {
       description: "Modern, responsive portfolio website with dark theme, neon aesthetics, and smooth animations. Built with React, Framer Motion, and Three.js for an immersive experience.",
       technologies: ["React", "TypeScript", "Framer Motion", "Three.js", "Tailwind CSS"],
       github: "https://github.com/jeeva64/Jeeva-Portfolio",
-      demo: "#",
+      demo: "https://jeeva-dev.web.app/",
       status: "Live",
       featured: true,
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
