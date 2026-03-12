@@ -28,7 +28,7 @@ export const Certifications = () => {
       status: "Completed",
       description: "Comprehensive course covering OOP concepts, design patterns, and advanced programming techniques in Java.",
       thumbnail: "/certificates/nptel-oop.jpg",
-      credentialUrl: "https://internalapp.nptel.ac.in/NOC/NOC25/SEM1/Ecertificates/106/noc25-cs34/Course/NPTEL25CS34S55870186104309068.pdf",
+      credentialUrl: "https://drive.google.com/file/d/1QV1zfWm_b2zw5lvg9KsK9ZMxIVzpiXbG/view?usp=drivesdk",
       skills: ["Java", "OOP", "Design Patterns", "Software Engineering"],
       color: "neon-purple",
       bgGradient: "from-purple-500/20 to-pink-500/20"
