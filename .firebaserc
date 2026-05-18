@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "jeeva-portfolio-5ed05"
+  },
+  "targets": {
+    "jeeva-portfolio-5ed05": {
+      "hosting": {
+        "jeeva-dev": [
+          "jeeva-dev"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
