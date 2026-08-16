@@ -20,18 +20,30 @@ export const Footer = () => {
               Jeeva Loganathan
             </h3>
             <p className="text-muted-foreground max-w-md mx-auto">
-              Software Developer passionate about creating innovative solutions 
-              and building the future with code.
+              AI Developer & ML Engineer building production machine learning
+              systems, backend APIs, and full-stack applications.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-wrap justify-center gap-6 text-sm">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm">
             <button 
               onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
               className="text-muted-foreground hover:text-neon-purple transition-colors"
             >
               About
+            </button>
+            <button 
+              onClick={() => document.getElementById('education')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-muted-foreground hover:text-neon-purple transition-colors"
+            >
+              Education
+            </button>
+            <button 
+              onClick={() => document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-muted-foreground hover:text-neon-cyan transition-colors"
+            >
+              Experience
             </button>
             <button 
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
@@ -44,6 +56,18 @@ export const Footer = () => {
               className="text-muted-foreground hover:text-neon-pink transition-colors"
             >
               Skills
+            </button>
+            <button 
+              onClick={() => document.getElementById('achievements')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-muted-foreground hover:text-neon-pink transition-colors"
+            >
+              Achievements
+            </button>
+            <button 
+              onClick={() => document.getElementById('certifications')?.scrollIntoView({ behavior: 'smooth' })}
+              className="text-muted-foreground hover:text-neon-green transition-colors"
+            >
+              Certifications
             </button>
             <button 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}

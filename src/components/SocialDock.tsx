@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Instagram, Code } from "lucide-react";
+import { Github, Linkedin, Twitter, Code } from "lucide-react";
 
 export const SocialDock = () => {
   const socialLinks = [
@@ -26,12 +26,6 @@ export const SocialDock = () => {
       icon: <Twitter className="w-5 h-5" />,
       url: "https://x.com/JEEVALOGU6",
       color: "hover:text-neon-blue"
-    },
-    {
-      name: "Instagram",
-      icon: <Instagram className="w-5 h-5" />,
-      url: "https://instagram.com/jeeva_loganathan5106",
-      color: "hover:text-neon-pink"
     }
   ];
 

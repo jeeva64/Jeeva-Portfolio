@@ -1,6 +1,8 @@
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { Education } from "@/components/Education";
+import { Experience } from "@/components/Experience";
 import { Projects } from "@/components/Projects";
 import { Skills } from "@/components/Skills";
 import { Achievements } from "@/components/Achievements";
@@ -15,9 +17,11 @@ const Index = () => {
       <Navigation />
       <SocialDock />
       
-      <main className="pb-20 lg:pb-0">
+      <main className="pb-24 lg:pb-0">
         <Hero />
         <About />
+        <Education />
+        <Experience />
         <Projects />
         <Skills />
         <Achievements />

@@ -12,6 +12,8 @@ export const Navigation = () => {
 
   const navItems = [
     { name: "About", href: "#about" },
+    { name: "Education", href: "#education" },
+    { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
     { name: "Achievements", href: "#achievements" },
@@ -87,7 +89,7 @@ export const Navigation = () => {
             </motion.div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden lg:flex items-center space-x-8">
               {navItems.map((item, index) => (
                 <motion.button
                   key={index}
@@ -125,7 +127,7 @@ export const Navigation = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="flex items-center gap-2 md:hidden">
+            <div className="flex items-center gap-2 lg:hidden">
               <ThemeToggle />
               <button
                 className="text-foreground p-2"
@@ -146,7 +148,7 @@ export const Navigation = () => {
             animate={{ opacity: 1, x: "0%" }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed top-0 right-0 bottom-0 w-72 glass-card backdrop-blur-xl z-40 md:hidden"
+            className="fixed top-0 right-0 bottom-0 w-72 glass-card backdrop-blur-xl z-40 lg:hidden"
           >
             <div className="p-6 pt-20">
               <div className="space-y-2">
@@ -195,7 +197,7 @@ export const Navigation = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-background/60 backdrop-blur-sm z-30 md:hidden"
+            className="fixed inset-0 bg-background/60 backdrop-blur-sm z-30 lg:hidden"
             onClick={() => setIsMobileMenuOpen(false)}
           />
         )}

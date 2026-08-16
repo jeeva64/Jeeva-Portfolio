@@ -44,7 +44,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-background">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden overflow-x-hidden pt-20 bg-background">
       <ParticleBackground />
       
       {/* 3D Background */}
@@ -91,10 +91,10 @@ export const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8 font-mono overflow-hidden"
+              className="text-base sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8 font-mono overflow-hidden w-full"
             >
-              <span className="inline-block animate-typing border-r-2 border-neon-purple">
-                Software Developer & AI Enthusiast 👋
+              <span className="inline-block animate-typing max-w-full whitespace-nowrap border-r-2 border-neon-purple">
+                AI Developer & ML Engineer 👋
               </span>
             </motion.div>
 
@@ -105,9 +105,7 @@ export const Hero = () => {
               transition={{ delay: 1.2, duration: 0.6 }}
               className="text-lg md:text-xl text-muted-foreground mb-12 leading-relaxed"
             >
-              Passionate Full-Stack Developer with expertise in Data Structures & Algorithms. 
-              Specializing in creating innovative solutions and building scalable applications 
-              that make a real impact in the digital world.
+              Building intelligent systems with Python, machine learning, backend engineering and strong problem solving foundations.
             </motion.p>
 
             {/* CTA Buttons */}

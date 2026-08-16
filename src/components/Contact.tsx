@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Mail, MapPin, Phone, Send, User, MessageSquare, Copy, Check, Clock, Calendar, Star, Award } from "lucide-react";
+import { Mail, MapPin, Phone, Send, User, MessageSquare, Copy, Check, Clock, Calendar, Star, Award, AlertCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
@@ -17,10 +17,64 @@ export const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
+  const [errors, setErrors] = useState<{ name?: string; email?: string; subject?: string; message?: string }>({});
+  const [touched, setTouched] = useState<{ name?: boolean; email?: boolean; subject?: boolean; message?: boolean }>({});
   const { toast } = useToast();
+
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case "name": {
+        if (!value.trim()) return "Please enter your name.";
+        if (value.trim().length < 2) return "Please enter your name (at least 2 characters).";
+        return "";
+      }
+      case "email": {
+        if (!value.trim()) return "Please enter your email address.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) return "Please enter a valid email address.";
+        return "";
+      }
+      case "subject":
+        if (!value.trim()) return "Please enter a subject.";
+        if (value.trim().length < 3) return "Subject must be at least 3 characters.";
+        return "";
+      case "message":
+        if (!value.trim()) return "Please enter a message.";
+        if (value.trim().length < 10) return "Message must be at least 10 characters.";
+        return "";
+      default:
+        return "";
+    }
+  };
+
+  const validateAll = () => {
+    const next: typeof errors = {};
+    (Object.keys(formData) as (keyof typeof formData)[]).forEach((k) => {
+      const msg = validateField(k, formData[k]);
+      if (msg) next[k] = msg;
+    });
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    const msg = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: msg || undefined }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const isValid = validateAll();
+    setTouched({ name: true, email: true, subject: true, message: true });
+    if (!isValid) {
+      toast({
+        title: "Please fix the highlighted fields",
+        description: "Some information is missing or invalid.",
+        variant: "destructive",
+      });
+      return;
+    }
     setIsSubmitting(true);
     
     try {
@@ -60,10 +114,15 @@ export const Contact = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    // Clear error for this field as the user edits
+    if (errors[name as keyof typeof errors]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
 
   const handleCopyLink = async (text: string, label: string) => {
@@ -128,7 +187,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 pb-32 lg:pb-20 relative">
+    <section id="contact" className="py-20 pb-40 lg:pb-20 relative overflow-x-hidden">
       <div className="container mx-auto px-6 lg:px-16 xl:pl-24">
         <motion.div
           initial="hidden"
@@ -140,7 +199,7 @@ export const Contact = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
-              Hire Me
+              Contact
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
               Looking for a dedicated developer? Let's discuss how I can contribute to your team!
@@ -169,8 +228,8 @@ export const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     variants={itemVariants}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 glass-card rounded-lg hover:border-neon-purple/50 transition-all duration-300 group"
+                    whileHover={{ x: 0 }}
+                    className="flex items-center gap-3 sm:gap-4 p-2.5 sm:p-4 glass-card rounded-lg hover:border-neon-purple/50 hover:translate-x-1 transition-all duration-300 group min-w-0"
                   >
                     <div className="p-2 sm:p-3 bg-neon-purple/10 text-neon-purple rounded-lg group-hover:bg-neon-purple/20 transition-colors flex-shrink-0">
                       {info.icon}
@@ -236,7 +295,7 @@ export const Contact = () => {
 
             {/* Contact Form */}
             <motion.div variants={itemVariants}>
-              <Card className="glass-card p-8">
+              <Card className="glass-card p-5 sm:p-6 md:p-8">
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-2 text-neon-purple">
                     Send Me a Message
@@ -246,7 +305,7 @@ export const Contact = () => {
                   </p>
                 </div>
                 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} noValidate className="space-y-6">
                   {/* Personal Information Section */}
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-foreground flex items-center gap-2">
@@ -254,7 +313,7 @@ export const Contact = () => {
                       Personal Information
                     </h4>
                     
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name" className="text-foreground font-medium">
                           Full Name *
@@ -264,10 +323,19 @@ export const Contact = () => {
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           required
-                          className="bg-background/50 border-border focus:border-neon-purple transition-colors"
+                          aria-invalid={!!(touched.name && errors.name)}
+                          aria-describedby="name-error"
+                          className="h-11 bg-background/50 border-border focus:border-neon-purple transition-colors"
                           placeholder="Enter your full name"
                         />
+                        {touched.name && errors.name && (
+                          <p id="name-error" className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1">
+                            <AlertCircle className="w-3.5 h-3.5" />
+                            {errors.name}
+                          </p>
+                        )}
                       </div>
 
                       <div className="space-y-2">
@@ -280,10 +348,19 @@ export const Contact = () => {
                           type="email"
                           value={formData.email}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           required
-                          className="bg-background/50 border-border focus:border-neon-purple transition-colors"
+                          aria-invalid={!!(touched.email && errors.email)}
+                          aria-describedby="email-error"
+                          className="h-11 bg-background/50 border-border focus:border-neon-purple transition-colors"
                           placeholder="your.email@example.com"
                         />
+                        {touched.email && errors.email && (
+                          <p id="email-error" className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1">
+                            <AlertCircle className="w-3.5 h-3.5" />
+                            {errors.email}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -304,10 +381,19 @@ export const Contact = () => {
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         required
-                        className="bg-background/50 border-border focus:border-neon-purple transition-colors"
+                        aria-invalid={!!(touched.subject && errors.subject)}
+                        aria-describedby="subject-error"
+                        className="h-11 bg-background/50 border-border focus:border-neon-purple transition-colors"
                         placeholder="What's this about?"
                       />
+                      {touched.subject && errors.subject && (
+                        <p id="subject-error" className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5" />
+                          {errors.subject}
+                        </p>
+                      )}
                     </div>
 
                     <div className="space-y-2">
@@ -319,11 +405,20 @@ export const Contact = () => {
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         required
                         rows={5}
+                        aria-invalid={!!(touched.message && errors.message)}
+                        aria-describedby="message-error"
                         className="bg-background/50 border-border focus:border-neon-purple transition-colors resize-none"
                         placeholder="Tell me about your project, opportunity, or just say hello! I'd love to hear from you."
                       />
+                      {touched.message && errors.message && (
+                        <p id="message-error" className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1">
+                          <AlertCircle className="w-3.5 h-3.5" />
+                          {errors.message}
+                        </p>
+                      )}
                     </div>
                   </div>
 
@@ -332,7 +427,7 @@ export const Contact = () => {
                     variant="hero"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full group"
+                    className="w-full group mb-2"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center gap-2">
