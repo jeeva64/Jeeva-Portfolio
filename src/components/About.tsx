@@ -53,9 +53,9 @@ export const About = () => {
                   I'm an <strong>AI Developer & ML Engineer</strong> focused on
                   building practical, production-oriented systems that turn data
                   and machine learning into real-world applications. I enjoy
-                  working across the complete development lifecycle—from
+                  working across the complete development lifecycle from
                   understanding a problem and preparing data to building ML
-                  workflows, developing backend services, and deploying
+                  workflows, developing backend services and deploying
                   applications.
                 </p>
 
@@ -68,14 +68,14 @@ export const About = () => {
                   <strong>
                     Python, FastAPI, SQLAlchemy, PostgreSQL, and REST APIs
                   </strong>
-                  , alongside machine learning technologies such as{" "}
-                  <strong>Scikit-learn, XGBoost, Pandas, and NumPy</strong>.
+                   alongside machine learning technologies such as{" "}
+                  <strong>Scikit-learn, XGBoost, Pandas and NumPy</strong>.
                 </p>
 
                 <p>
                   Beyond AI/ML, I enjoy building and shipping complete software
                   systems. As a key contributor to <strong>AION 2K26</strong>, a
-                  state-level technical symposium platform, I worked across
+                  state-level technical symposium platform. I worked across
                   frontend, backend, database, deployment, and system
                   administration responsibilities, helping deliver a platform
                   that supported <strong>130+ registrations</strong>. I also
@@ -86,7 +86,7 @@ export const About = () => {
 
                 <p>
                   I'm focused on continuously expanding my capabilities in AI,
-                  backend engineering, and modern software systems, with the
+                  backend engineering, and modern software systems with the
                   goal of building reliable AI solutions and growing into a
                   strong <strong>end-to-end AI engineer</strong>.
                 </p>
