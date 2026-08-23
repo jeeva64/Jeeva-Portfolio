@@ -1,5 +1,78 @@
-User-agent: *
+# robots.txt — jeeval.dev
+# Portfolio of Jeeva Loganathan
+# https://jeeval.dev/
 
+# ============================================================
+# General crawling & Content Signals
+# ============================================================
+
+User-agent: *
 Allow: /
+
+# Content Signals:
+# search   = Search indexing and search results
+# ai-input = AI systems may use content as input/reference
+# ai-train = AI model training or fine-tuning
+# use      = How AI systems may consume the content
+#
+# Search and AI reference use are permitted.
+# AI training is explicitly not permitted.
+
+Content-Signal: search=yes,ai-input=yes,ai-train=no,use=reference
+
+
+# ============================================================
+# Search Engines
+# ============================================================
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+
+# ============================================================
+# AI Training Crawlers
+# ============================================================
+
+# OpenAI
+User-agent: GPTBot
+Disallow: /
+
+# Anthropic
+User-agent: ClaudeBot
+Disallow: /
+
+# Google AI training
+User-agent: Google-Extended
+Disallow: /
+
+# Apple AI training
+User-agent: Applebot-Extended
+Disallow: /
+
+# ByteDance
+User-agent: Bytespider
+Disallow: /
+
+# Common Crawl
+User-agent: CCBot
+Disallow: /
+
+# Amazon
+User-agent: Amazonbot
+Disallow: /
+
+
+# ============================================================
+# Sitemap
+# ============================================================
 
 Sitemap: https://jeeval.dev/sitemap.xml
