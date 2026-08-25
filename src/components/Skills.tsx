@@ -9,19 +9,19 @@ export const Skills = () => {
       skills: [
         {
           name: "Scikit-learn",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg",
+          logo: "/logos/scikit-learn.svg",
         },
         {
           name: "XGBoost",
-          logo: "https://raw.githubusercontent.com/dmlc/dmlc.github.io/master/img/logo-m/xgboost.png",
+          logo: "/logos/xgboost.png",
         },
         {
           name: "Pandas",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
+          logo: "/logos/pandas.svg",
         },
         {
           name: "NumPy",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",
+          logo: "/logos/numpy.svg",
         },
       ],
     },
@@ -31,19 +31,19 @@ export const Skills = () => {
       skills: [
         {
           name: "Python",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+          logo: "/logos/python.svg",
         },
         {
           name: "FastAPI",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg",
+          logo: "/logos/fastapi.svg",
         },
         {
           name: "SQLAlchemy",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg",
+          logo: "/logos/sqlalchemy.svg",
         },
         {
           name: "Pydantic",
-          logo: "https://cdn.simpleicons.org/pydantic",
+          logo: "/logos/pydantic.svg",
         },
       ],
     },
@@ -53,15 +53,15 @@ export const Skills = () => {
       skills: [
         {
           name: "PostgreSQL",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+          logo: "/logos/postgresql.svg",
         },
         {
           name: "MySQL",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+          logo: "/logos/mysql.svg",
         },
         {
           name: "MongoDB",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+          logo: "/logos/mongodb.svg",
         },
       ],
     },
@@ -71,19 +71,19 @@ export const Skills = () => {
       skills: [
         {
           name: "JavaScript",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+          logo: "/logos/javascript.svg",
         },
         {
           name: "React",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+          logo: "/logos/react.svg",
         },
         {
           name: "HTML5",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+          logo: "/logos/html5.svg",
         },
         {
           name: "Tailwind CSS",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+          logo: "/logos/tailwindcss.svg",
         },
       ],
     },
@@ -93,23 +93,30 @@ export const Skills = () => {
       skills: [
         {
           name: "Docker",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+          logo: "/logos/docker.svg",
         },
         {
           name: "Vercel",
-          logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
+          logo: "/logos/vercel.svg",
         },
         {
           name: "Render",
-          logo: "https://cdn.simpleicons.org/render",
+          logo: "/logos/render.svg",
         },
         {
           name: "GitHub",
-          logo: "https://cdn.simpleicons.org/github",
+          logo: "/logos/github.svg",
         },
       ],
     },
   ];
+  // Static class maps — Tailwind cannot see interpolated class names.
+  const barStyles: Record<string, string> = {
+    "neon-purple": "bg-neon-purple",
+    "neon-cyan": "bg-neon-cyan",
+    "neon-pink": "bg-neon-pink",
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -166,7 +173,7 @@ export const Skills = () => {
                       {category.title}
                     </h3>
                     <div
-                      className={`w-12 h-1 bg-gradient-to-r from-${category.color} to-${category.color}/50 rounded-full`}
+                      className={`w-12 h-1 ${barStyles[category.color]} rounded-full`}
                     ></div>
                   </div>
 

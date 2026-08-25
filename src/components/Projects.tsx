@@ -26,7 +26,7 @@ export const Projects = () => {
       live: "https://vdart-automl.netlify.app/",
       status: "Live",
       featured: true,
-      image: "Images/Projects/Automl.png",
+      image: "/Images/Projects/automl.webp",
       date: "2026",
       highlights: [
         "Live production deployment",
@@ -54,7 +54,7 @@ export const Projects = () => {
       demo: "https://aion2k26.vercel.app/",
       status: "Live",
       featured: true,
-      image: "Images/Projects/Aion 2K26.png",
+      image: "/Images/Projects/aion-2k26.webp",
       date: "2026",
       highlights: [
         "130+ registrations",
@@ -81,7 +81,7 @@ export const Projects = () => {
       demo: "https://aion2k26.tech/",
       status: "In Progress",
       featured: false,
-      image: "Images/Projects/Aion 2k26 2.O Logo.png",
+      image: "/Images/Projects/aion-2k26-2-o-logo.webp",
       date: "2026",
       highlights: [
         "Retrieval-Augmented Generation",
@@ -109,6 +109,12 @@ export const Projects = () => {
       y: 0,
       transition: { duration: 0.6 },
     },
+  };
+
+  // Static class maps — Tailwind cannot see interpolated class names.
+  const statusStyles: Record<string, string> = {
+    Live: "bg-neon-green/20 text-neon-green border border-neon-green/30",
+    "In Progress": "bg-neon-cyan/20 text-neon-cyan border border-neon-cyan/30",
   };
 
   return (
@@ -146,6 +152,10 @@ export const Projects = () => {
                     <img
                       src={project.image}
                       alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                      width={1200}
+                      height={600}
                       className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -168,6 +178,13 @@ export const Projects = () => {
                       <Calendar size={14} className="text-muted-foreground" />
                       <span className="text-sm text-muted-foreground">
                         {project.date}
+                      </span>
+                      <span
+                        className={`inline-flex px-3 py-0.5 text-xs font-medium rounded-full ${
+                          statusStyles[project.status] ?? "bg-muted text-muted-foreground"
+                        }`}
+                      >
+                        {project.status}
                       </span>
                     </div>
 
@@ -194,35 +211,43 @@ export const Projects = () => {
                       )}
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-3">
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1"
-                      >
-                        <Button variant="outline" size="sm" className="w-full">
-                          <Github className="w-4 h-4 mr-2" />
-                          GitHub
-                        </Button>
-                      </a>
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1"
-                      >
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          className="w-full"
-                        >
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Live Demo
-                        </Button>
-                      </a>
-                    </div>
+                    {/* Action Buttons — rendered only when a link exists */}
+                    {(project.github || project.demo || project.live) && (
+                      <div className="flex gap-3">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`GitHub — ${project.title}`}
+                            className="flex-1"
+                          >
+                            <Button variant="outline" size="sm" className="w-full">
+                              <Github className="w-4 h-4 mr-2" />
+                              GitHub
+                            </Button>
+                          </a>
+                        )}
+                        {(project.demo || project.live) && (
+                          <a
+                            href={(project.demo ?? project.live)!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Live Demo — ${project.title}`}
+                            className="flex-1"
+                          >
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="w-full"
+                            >
+                              <ExternalLink className="w-4 h-4 mr-2" />
+                              Live Demo
+                            </Button>
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </Card>
               </motion.div>

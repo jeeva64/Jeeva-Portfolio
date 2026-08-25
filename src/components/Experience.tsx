@@ -321,6 +321,7 @@ export const Experience = () => {
                           href={exp.github}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`GitHub — ${exp.organization}`}
                           className="flex-1 min-w-[140px]"
                         >
                           <Button
@@ -338,6 +339,7 @@ export const Experience = () => {
                           href={exp.live}
                           target="_blank"
                           rel="noopener noreferrer"
+                          aria-label={`Live Demo — ${exp.organization}`}
                           className="flex-1 min-w-[140px]"
                         >
                           <Button

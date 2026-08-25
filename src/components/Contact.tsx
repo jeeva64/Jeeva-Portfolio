@@ -89,7 +89,9 @@ export const Contact = () => {
           email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          _subject: `New Contact Form Submission: ${formData.subject}`
+          _subject: `New Contact Form Submission: ${formData.subject}`,
+          _captcha: "false",
+          _honey: ""
         })
       });
 
@@ -306,6 +308,16 @@ export const Contact = () => {
                 </div>
                 
                 <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                  {/* Honeypot — hidden spam trap */}
+                  <input
+                    type="text"
+                    name="_honey"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
+                  />
+
                   {/* Personal Information Section */}
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-foreground flex items-center gap-2">

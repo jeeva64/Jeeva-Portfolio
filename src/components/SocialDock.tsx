@@ -49,6 +49,7 @@ export const SocialDock = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               title={social.name}
+              aria-label={social.name}
             >
               <div className="relative">
                 {social.icon}
@@ -85,6 +86,7 @@ export const SocialDock = () => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 title={social.name}
+                aria-label={social.name}
               >
                 {social.icon}
               </motion.a>

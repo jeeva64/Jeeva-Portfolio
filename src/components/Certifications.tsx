@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { ExternalLink, Calendar, Award } from "lucide-react";
 import { useState } from "react";
@@ -15,7 +15,7 @@ export const Certifications = () => {
       status: "Completed",
       description:
         "Comprehensive course covering OOP concepts, design patterns, and advanced programming techniques in Java.",
-      thumbnail: "Images/Certificates/nptel-oop.jpg",
+      thumbnail: "/Images/Certificates/nptel-oop.webp",
       credentialUrl:
         "https://drive.google.com/file/d/1QV1zfWm_b2zw5lvg9KsK9ZMxIVzpiXbG/view?usp=drivesdk",
       skills: ["Java", "OOP", "Design Patterns", "Software Engineering"],
@@ -30,7 +30,7 @@ export const Certifications = () => {
       status: "Completed",
       description:
         "Comprehensive course on DBMS fundamentals covering relational models, SQL, normalization, and database design.",
-      thumbnail: "Images/Certificates/nptel-dbms.jpg",
+      thumbnail: "/Images/Certificates/nptel-dbms.webp",
       credentialUrl:
         "https://archive.nptel.ac.in/content/noc/NOC25/SEM2/Ecertificates/106/noc25-cs145/Course/NPTEL25CS145S64900077609169333.pdf",
       skills: [
@@ -52,7 +52,7 @@ export const Certifications = () => {
       status: "Certified",
       description:
         "Industry-focused certification program covering professional skills, communication, and technical competencies.",
-      thumbnail: "Images/Certificates/tcs-ion.jpg",
+      thumbnail: "/Images/Certificates/tcs-ion.webp",
       credentialUrl:
         "https://drive.google.com/file/d/1Bf2uodYz763pWH5nnaDKu-Qfmb9WwyGS/view",
       skills: [
@@ -65,6 +65,23 @@ export const Certifications = () => {
       bgGradient: "from-cyan-500/20 to-teal-500/20",
     },
   ];
+
+  // Static class maps — Tailwind cannot see interpolated class names.
+  const tagStyles: Record<string, string> = {
+    "neon-purple": "bg-neon-purple/20 text-neon-purple",
+    "neon-blue": "bg-neon-blue/20 text-neon-blue",
+    "neon-cyan": "bg-neon-cyan/20 text-neon-cyan",
+  };
+  const btnStyles: Record<string, string> = {
+    "neon-purple": "bg-neon-purple/20 text-neon-purple hover:bg-neon-purple/30",
+    "neon-blue": "bg-neon-blue/20 text-neon-blue hover:bg-neon-blue/30",
+    "neon-cyan": "bg-neon-cyan/20 text-neon-cyan hover:bg-neon-cyan/30",
+  };
+  const iconStyles: Record<string, string> = {
+    "neon-purple": "text-neon-purple",
+    "neon-blue": "text-neon-blue",
+    "neon-cyan": "text-neon-cyan",
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -137,6 +154,10 @@ export const Certifications = () => {
                         <img
                           src={cert.thumbnail}
                           alt={cert.title}
+                          loading="lazy"
+                          decoding="async"
+                          width={800}
+                          height={1000}
                           className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
@@ -171,7 +192,7 @@ export const Certifications = () => {
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-3">
                       <Award
-                        className={`text-${cert.color} flex-shrink-0 mt-1`}
+                        className={`${iconStyles[cert.color]} flex-shrink-0 mt-1`}
                         size={20}
                       />
                       <ExternalLink
@@ -208,7 +229,7 @@ export const Certifications = () => {
                       {cert.skills.slice(0, 3).map((skill, index) => (
                         <span
                           key={index}
-                          className={`px-2 py-1 text-xs rounded-md bg-${cert.color}/20 text-${cert.color}`}
+                          className={`px-2 py-1 text-xs rounded-md ${tagStyles[cert.color]}`}
                         >
                           {skill}
                         </span>
@@ -221,6 +242,7 @@ export const Certifications = () => {
                     </div>
 
                     {/* Expanded Details */}
+                    <AnimatePresence initial={false}>
                     {selectedCert === cert.id && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
@@ -238,7 +260,7 @@ export const Certifications = () => {
                               {cert.skills.map((skill, index) => (
                                 <span
                                   key={index}
-                                  className={`px-2 py-1 text-xs rounded-md bg-${cert.color}/20 text-${cert.color}`}
+                                  className={`px-2 py-1 text-xs rounded-md ${tagStyles[cert.color]}`}
                                 >
                                   {skill}
                                 </span>
@@ -246,7 +268,7 @@ export const Certifications = () => {
                             </div>
                           </div>
                           <button
-                            className={`w-full py-2 rounded-lg text-sm font-medium transition-colors bg-${cert.color}/20 text-${cert.color} hover:bg-${cert.color}/30 flex items-center justify-center gap-2`}
+                            className={`w-full py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2 ${btnStyles[cert.color]}`}
                             onClick={(e) => {
                               e.stopPropagation();
                               handleViewCredential(cert.credentialUrl);
@@ -258,6 +280,7 @@ export const Certifications = () => {
                         </div>
                       </motion.div>
                     )}
+                    </AnimatePresence>
                   </div>
                 </Card>
               </motion.div>

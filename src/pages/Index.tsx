@@ -17,7 +17,7 @@ const Index = () => {
       <Navigation />
       <SocialDock />
       
-      <main className="pb-24 lg:pb-0">
+      <main id="main-content" className="pb-24 lg:pb-0">
         <Hero />
         <About />
         <Education />

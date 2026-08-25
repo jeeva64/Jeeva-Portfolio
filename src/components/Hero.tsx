@@ -1,31 +1,40 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ParticleBackground } from "./ParticleBackground";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
-import { useRef } from "react";
-import { Mesh } from "three";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Download, Eye } from "lucide-react";
-import profileImage from "@/assets/profile.png";
+import profileImage from "@/assets/profile.webp";
+import profileImage480 from "@/assets/profile-480.webp";
+import { Typewriter } from "./Typewriter";
 
-const AnimatedSphere = () => {
-  const meshRef = useRef<Mesh>(null);
+const SphereScene = lazy(() => import("./SphereScene"));
 
-  return (
-    <Sphere ref={meshRef} args={[1, 100, 200]} scale={2}>
-      <MeshDistortMaterial
-        color="#8B5CF6"
-        attach="material"
-        distort={0.3}
-        speed={1.5}
-        roughness={0}
-        metalness={0.8}
-      />
-    </Sphere>
-  );
+const useInView = <T extends HTMLElement>() => {
+  const ref = useRef<T>(null);
+  const [inView, setInView] = useState(true);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, inView };
 };
 
 export const Hero = () => {
+  const viewport = useInView<HTMLDivElement>();
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // React 18 has no JSX prop for this — set the LCP hint imperatively
+    if (imgRef.current) imgRef.current.fetchPriority = "high";
+  }, []);
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -47,14 +56,11 @@ export const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden overflow-x-hidden pt-20 bg-background">
       <ParticleBackground />
       
-      {/* 3D Background */}
-      <div className="absolute inset-0 -z-10">
-        <Canvas camera={{ position: [0, 0, 5] }}>
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 10, 10]} />
-          <AnimatedSphere />
-          <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.5} />
-        </Canvas>
+      {/* 3D Background — lazy-loaded, paused offscreen */}
+      <div className="absolute inset-0 -z-10" ref={viewport.ref}>
+        <Suspense fallback={null}>
+          <SphereScene paused={!viewport.inView} />
+        </Suspense>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -93,9 +99,7 @@ export const Hero = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="text-base sm:text-xl md:text-2xl lg:text-3xl text-muted-foreground mb-8 font-mono overflow-hidden w-full"
             >
-              <span className="inline-block animate-typing max-w-full whitespace-nowrap border-r-2 border-neon-purple">
-                AI Developer & ML Engineer 👋
-              </span>
+              <Typewriter />
             </motion.div>
 
             {/* Description */}
@@ -161,7 +165,10 @@ export const Hero = () => {
               >
                 <div className="w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden border-4 border-neon-purple/30 shadow-2xl">
                   <img
+                    ref={imgRef}
                     src={profileImage}
+                    srcSet={`${profileImage480} 480w, ${profileImage} 800w`}
+                    sizes="(max-width: 767px) 80vw, 384px"
                     alt="Jeeva Loganathan"
                     className="w-full h-full object-cover object-top"
                   />
@@ -181,7 +188,8 @@ export const Hero = () => {
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                  className="absolute -top-4 -right-4 bg-neon-purple/20 text-neon-purple px-3 py-1 rounded-lg text-sm font-mono backdrop-blur-sm"
+                  className="absolute -top-4 -right-4 bg-neon-purple/20 text-[hsl(270,91%,32%)] dark:text-neon-purple px-3 py-1 rounded-lg text-sm font-mono backdrop-blur-sm"
+                  aria-hidden="true"
                 >
                   {"{ }"}
                 </motion.div>
@@ -197,7 +205,8 @@ export const Hero = () => {
                     ease: "easeInOut",
                     delay: 1
                   }}
-                  className="absolute -bottom-4 -left-4 bg-neon-cyan/20 text-neon-cyan px-3 py-1 rounded-lg text-sm font-mono backdrop-blur-sm"
+                  className="absolute -bottom-4 -left-4 bg-neon-cyan/20 text-[hsl(189,94%,26%)] dark:text-neon-cyan px-3 py-1 rounded-lg text-sm font-mono backdrop-blur-sm"
+                  aria-hidden="true"
                 >
                   &lt;/&gt;
                 </motion.div>

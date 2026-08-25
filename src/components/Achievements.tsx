@@ -23,7 +23,7 @@ export const Achievements = () => {
       description:
         "Awarded Outstanding Performer with the Batch Endowment Cash Prize for achieving top academic distinction across five semesters of B.Sc. Computer Science.",
       icon: Trophy,
-      image: "Images/Achievements/outstanding.jpeg",
+      image: "/Images/Achievements/outstanding.webp",
       color: "neon-cyan",
     },
     {
@@ -34,7 +34,7 @@ export const Achievements = () => {
       description:
         "Solved 300+ problems on LeetCode across a wide range of Data Structures and Algorithms patterns, achieved a 1370+ contest rating, and maintained a 365-day consistency streak through long-term problem-solving practice.",
       icon: Code,
-      image: "Images/Achievements/leetcode.png",
+      image: "/Images/Achievements/leetcode.webp",
       color: "neon-green",
     },
     {
@@ -45,7 +45,7 @@ export const Achievements = () => {
       description:
         "Achieved victories in 12 technical events at intercollegiate symposiums, demonstrating skills in code debugging, Data Structures and Algorithms, technical problem-solving, and paper presentation.",
       icon: Trophy,
-      image: "Images/Achievements/symposium.jpeg",
+      image: "/Images/Achievements/symposium.webp",
       color: "neon-purple",
     },
     {
@@ -56,10 +56,18 @@ export const Achievements = () => {
       description:
         "Crowned Mr. VARIT 2K25 National Champion after securing first place in the Error Exhibit debugging competition among participants from multiple colleges.",
       icon: Award,
-      image: "Images/Achievements/varit1.jpeg",
+      image: "/Images/Achievements/varit1.webp",
       color: "neon-blue",
     },
   ];
+
+  // Static class maps — Tailwind cannot see interpolated class names.
+  const tagStyles: Record<string, string> = {
+    "neon-cyan": "bg-neon-cyan/20 text-neon-cyan",
+    "neon-green": "bg-neon-green/20 text-neon-green",
+    "neon-purple": "bg-neon-purple/20 text-neon-purple",
+    "neon-blue": "bg-neon-blue/20 text-neon-blue",
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -111,7 +119,7 @@ export const Achievements = () => {
                 <motion.div
                   key={achievement.id}
                   variants={itemVariants}
-                  className={`grid md:grid-cols-2 gap-8 items-center ${!isEven ? "md:direction-rtl" : ""}`}
+                  className={`grid md:grid-cols-2 gap-8 items-center`}
                 >
                   {/* Achievement Image */}
                   <motion.div
@@ -123,12 +131,16 @@ export const Achievements = () => {
                       <img
                         src={achievement.image}
                         alt={achievement.title}
+                        loading="lazy"
+                        decoding="async"
+                        width={1200}
+                        height={800}
                         className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <div className="absolute bottom-4 left-4 right-4">
                           <span
-                            className={`inline-block px-3 py-1 text-sm font-medium rounded-full bg-${achievement.color}/20 text-${achievement.color}`}
+                            className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${tagStyles[achievement.color]}`}
                           >
                             {achievement.category}
                           </span>
@@ -145,7 +157,7 @@ export const Achievements = () => {
                     <Card className="glass-card p-8 h-full">
                       <div className="flex items-start gap-4">
                         <div
-                          className={`p-3 rounded-xl bg-${achievement.color}/20 text-${achievement.color}`}
+                          className={`p-3 rounded-xl ${tagStyles[achievement.color]}`}
                         >
                           <IconComponent size={24} />
                         </div>
@@ -165,7 +177,7 @@ export const Achievements = () => {
                           </h3>
 
                           <span
-                            className={`inline-block px-3 py-1 text-sm font-medium rounded-full mb-4 bg-${achievement.color}/20 text-${achievement.color}`}
+                            className={`inline-block px-3 py-1 text-sm font-medium rounded-full mb-4 ${tagStyles[achievement.color]}`}
                           >
                             {achievement.category}
                           </span>

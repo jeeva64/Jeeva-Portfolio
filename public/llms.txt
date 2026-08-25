@@ -1,0 +1,19 @@
+# Jeeva Loganathan — AI Developer & ML Engineer
+
+> Portfolio of Jeeva Loganathan, an AI Developer & ML Engineer building practical,
+> production-oriented machine learning systems, backend APIs, and full-stack applications.
+
+AI reference use is permitted; AI model training on this content is not permitted.
+See /robots.txt (Content-Signal: search=yes, ai-input=yes, ai-train=no).
+
+## Site
+
+- [Portfolio](https://jeeval.dev/): About, education, experience, projects, skills, achievements, certifications, contact
+- [Resume](https://jeeval.dev/resume.pdf): Full résumé (PDF)
+
+## Profiles
+
+- [GitHub](https://github.com/jeeva64): Code and open-source work
+- [LinkedIn](https://www.linkedin.com/in/jeeva-l/): Professional profile
+- [LeetCode](https://leetcode.com/u/jeevaloganathan/): Problem-solving record
+- [X](https://x.com/JEEVALOGU6): Social profile
