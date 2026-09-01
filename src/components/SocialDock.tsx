@@ -7,26 +7,26 @@ export const SocialDock = () => {
       name: "GitHub",
       icon: <Github className="w-5 h-5" />,
       url: "https://github.com/jeeva64",
-      color: "hover:text-neon-purple"
+      color: "hover:text-neon-purple",
     },
     {
       name: "LinkedIn",
       icon: <Linkedin className="w-5 h-5" />,
       url: "https://linkedin.com/in/jeeva-l",
-      color: "hover:text-neon-cyan"
+      color: "hover:text-neon-cyan",
     },
     {
       name: "LeetCode",
       icon: <Code className="w-5 h-5" />,
-      url: "https://leetcode.com/u/jeevaloganathan/",
-      color: "hover:text-neon-green"
+      url: "https://leetcode.com/u/jeeva64/",
+      color: "hover:text-neon-green",
     },
     {
       name: "X",
       icon: <Twitter className="w-5 h-5" />,
       url: "https://x.com/JEEVALOGU6",
-      color: "hover:text-neon-blue"
-    }
+      color: "hover:text-neon-blue",
+    },
   ];
 
   return (
@@ -53,7 +53,7 @@ export const SocialDock = () => {
             >
               <div className="relative">
                 {social.icon}
-                
+
                 {/* Tooltip */}
                 <div className="absolute left-full ml-3 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-50">
                   <div className="glass-card px-3 py-2 rounded-lg whitespace-nowrap text-sm font-medium shadow-lg">

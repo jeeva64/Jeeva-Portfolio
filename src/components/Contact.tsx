@@ -5,41 +5,69 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import { Mail, MapPin, Phone, Send, User, MessageSquare, Copy, Check, Clock, Calendar, Star, Award, AlertCircle } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  User,
+  MessageSquare,
+  Copy,
+  Check,
+  Clock,
+  Calendar,
+  Star,
+  Award,
+  AlertCircle,
+} from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [copiedLink, setCopiedLink] = useState<string | null>(null);
-  const [errors, setErrors] = useState<{ name?: string; email?: string; subject?: string; message?: string }>({});
-  const [touched, setTouched] = useState<{ name?: boolean; email?: boolean; subject?: boolean; message?: boolean }>({});
+  const [errors, setErrors] = useState<{
+    name?: string;
+    email?: string;
+    subject?: string;
+    message?: string;
+  }>({});
+  const [touched, setTouched] = useState<{
+    name?: boolean;
+    email?: boolean;
+    subject?: boolean;
+    message?: boolean;
+  }>({});
   const { toast } = useToast();
 
   const validateField = (name: string, value: string): string => {
     switch (name) {
       case "name": {
         if (!value.trim()) return "Please enter your name.";
-        if (value.trim().length < 2) return "Please enter your name (at least 2 characters).";
+        if (value.trim().length < 2)
+          return "Please enter your name (at least 2 characters).";
         return "";
       }
       case "email": {
         if (!value.trim()) return "Please enter your email address.";
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) return "Please enter a valid email address.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()))
+          return "Please enter a valid email address.";
         return "";
       }
       case "subject":
         if (!value.trim()) return "Please enter a subject.";
-        if (value.trim().length < 3) return "Subject must be at least 3 characters.";
+        if (value.trim().length < 3)
+          return "Subject must be at least 3 characters.";
         return "";
       case "message":
         if (!value.trim()) return "Please enter a message.";
-        if (value.trim().length < 10) return "Message must be at least 10 characters.";
+        if (value.trim().length < 10)
+          return "Message must be at least 10 characters.";
         return "";
       default:
         return "";
@@ -56,7 +84,9 @@ export const Contact = () => {
     return Object.keys(next).length === 0;
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setTouched((prev) => ({ ...prev, [name]: true }));
     const msg = validateField(name, value);
@@ -76,38 +106,43 @@ export const Contact = () => {
       return;
     }
     setIsSubmitting(true);
-    
+
     try {
-      const response = await fetch("https://formsubmit.co/ajax/jeevajeevaloganathan977@gmail.com", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+      const response = await fetch(
+        "https://formsubmit.co/ajax/jeevalogu64@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            _subject: `New Contact Form Submission: ${formData.subject}`,
+            _captcha: "false",
+            _honey: "",
+          }),
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          _subject: `New Contact Form Submission: ${formData.subject}`,
-          _captcha: "false",
-          _honey: ""
-        })
-      });
+      );
 
       if (response.ok) {
         toast({
           title: "Message Sent Successfully!",
-          description: "Thank you for your message. I'll get back to you within 24 hours!",
+          description:
+            "Thank you for your message. I'll get back to you within 24 hours!",
         });
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         throw new Error("Failed to send message");
       }
     } catch (error) {
       toast({
         title: "Message Failed",
-        description: "Failed to send message. Please try again or email directly.",
+        description:
+          "Failed to send message. Please try again or email directly.",
         variant: "destructive",
       });
     } finally {
@@ -115,15 +150,17 @@ export const Contact = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
     // Clear error for this field as the user edits
     if (errors[name as keyof typeof errors]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
@@ -149,24 +186,24 @@ export const Contact = () => {
     {
       icon: <Mail className="w-5 h-5" />,
       title: "Email",
-      value: "jeevajeevaloganathan977@gmail.com",
-      link: "mailto:jeevajeevaloganathan977@gmail.com",
-      copyText: "jeevajeevaloganathan977@gmail.com"
+      value: "jeevalogu64@gmail.com",
+      link: "mailto:jeevalogu64@gmail.com",
+      copyText: "jeevalogu64@gmail.com",
     },
     {
       icon: <Phone className="w-5 h-5" />,
       title: "Phone",
       value: "+91 9976578892",
       link: "tel:+919976578892",
-      copyText: "+91 9976578892"
+      copyText: "+91 9976578892",
     },
     {
       icon: <MapPin className="w-5 h-5" />,
       title: "Location",
       value: "Tiruchirappalli, Tamil Nadu, India",
       link: "https://maps.google.com/?q=Tiruchirappalli,Tamil+Nadu,India",
-      copyText: "Tiruchirappalli, Tamil Nadu, India"
-    }
+      copyText: "Tiruchirappalli, Tamil Nadu, India",
+    },
   ];
 
   const containerVariants = {
@@ -174,9 +211,9 @@ export const Contact = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -184,12 +221,15 @@ export const Contact = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
-    }
+      transition: { duration: 0.6 },
+    },
   };
 
   return (
-    <section id="contact" className="py-20 pb-40 lg:pb-20 relative overflow-x-hidden">
+    <section
+      id="contact"
+      className="py-20 pb-40 lg:pb-20 relative overflow-x-hidden"
+    >
       <div className="container mx-auto px-6 lg:px-16 xl:pl-24">
         <motion.div
           initial="hidden"
@@ -199,25 +239,32 @@ export const Contact = () => {
           className="max-w-6xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-12 lg:mb-16">
+          <motion.div
+            variants={itemVariants}
+            className="text-center mb-12 lg:mb-16"
+          >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Contact
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
-              Looking for a dedicated developer? Let's discuss how I can contribute to your team!
+              Looking for a dedicated developer? Let's discuss how I can
+              contribute to your team!
             </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
             {/* Contact Info */}
-            <motion.div variants={itemVariants} className="space-y-6 lg:space-y-8">
+            <motion.div
+              variants={itemVariants}
+              className="space-y-6 lg:space-y-8"
+            >
               <div className="text-center lg:text-left">
                 <h3 className="text-xl sm:text-2xl font-bold mb-4 text-neon-cyan">
                   Let's Connect
                 </h3>
                 <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                  I'm always open to discussing new opportunities, innovative projects, 
-                  or just having a conversation about technology.
+                  I'm always open to discussing new opportunities, innovative
+                  projects, or just having a conversation about technology.
                 </p>
               </div>
 
@@ -273,7 +320,9 @@ export const Contact = () => {
                     <div className="flex items-start gap-3">
                       <Award className="w-5 h-5 text-neon-green flex-shrink-0 mt-0.5" />
                       <div>
-                        <h5 className="font-semibold text-foreground text-sm sm:text-base mb-1">Internship / Full-Time</h5>
+                        <h5 className="font-semibold text-foreground text-sm sm:text-base mb-1">
+                          Internship / Full-Time
+                        </h5>
                         <p className="text-xs sm:text-sm text-muted-foreground">
                           Software Developer, Full-Stack, or AI/ML roles
                         </p>
@@ -284,7 +333,9 @@ export const Contact = () => {
                     <div className="flex items-start gap-3">
                       <Star className="w-5 h-5 text-neon-purple flex-shrink-0 mt-0.5" />
                       <div>
-                        <h5 className="font-semibold text-foreground text-sm sm:text-base mb-1">Collaborations</h5>
+                        <h5 className="font-semibold text-foreground text-sm sm:text-base mb-1">
+                          Collaborations
+                        </h5>
                         <p className="text-xs sm:text-sm text-muted-foreground">
                           Open source, hackathons, innovative projects
                         </p>
@@ -303,10 +354,11 @@ export const Contact = () => {
                     Send Me a Message
                   </h3>
                   <p className="text-muted-foreground">
-                    Fill out the form below and I'll get back to you as soon as possible.
+                    Fill out the form below and I'll get back to you as soon as
+                    possible.
                   </p>
                 </div>
-                
+
                 <form onSubmit={handleSubmit} noValidate className="space-y-6">
                   {/* Honeypot — hidden spam trap */}
                   <input
@@ -324,10 +376,13 @@ export const Contact = () => {
                       <User className="w-5 h-5 text-neon-cyan" />
                       Personal Information
                     </h4>
-                    
+
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name" className="text-foreground font-medium">
+                        <Label
+                          htmlFor="name"
+                          className="text-foreground font-medium"
+                        >
                           Full Name *
                         </Label>
                         <Input
@@ -343,7 +398,10 @@ export const Contact = () => {
                           placeholder="Enter your full name"
                         />
                         {touched.name && errors.name && (
-                          <p id="name-error" className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1">
+                          <p
+                            id="name-error"
+                            className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1"
+                          >
                             <AlertCircle className="w-3.5 h-3.5" />
                             {errors.name}
                           </p>
@@ -351,7 +409,10 @@ export const Contact = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="email" className="text-foreground font-medium">
+                        <Label
+                          htmlFor="email"
+                          className="text-foreground font-medium"
+                        >
                           Email Address *
                         </Label>
                         <Input
@@ -368,7 +429,10 @@ export const Contact = () => {
                           placeholder="your.email@example.com"
                         />
                         {touched.email && errors.email && (
-                          <p id="email-error" className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1">
+                          <p
+                            id="email-error"
+                            className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1"
+                          >
                             <AlertCircle className="w-3.5 h-3.5" />
                             {errors.email}
                           </p>
@@ -383,9 +447,12 @@ export const Contact = () => {
                       <MessageSquare className="w-5 h-5 text-neon-pink" />
                       Message Details
                     </h4>
-                    
+
                     <div className="space-y-2">
-                      <Label htmlFor="subject" className="text-foreground font-medium">
+                      <Label
+                        htmlFor="subject"
+                        className="text-foreground font-medium"
+                      >
                         Subject *
                       </Label>
                       <Input
@@ -401,7 +468,10 @@ export const Contact = () => {
                         placeholder="What's this about?"
                       />
                       {touched.subject && errors.subject && (
-                        <p id="subject-error" className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1">
+                        <p
+                          id="subject-error"
+                          className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1"
+                        >
                           <AlertCircle className="w-3.5 h-3.5" />
                           {errors.subject}
                         </p>
@@ -409,7 +479,10 @@ export const Contact = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message" className="text-foreground font-medium">
+                      <Label
+                        htmlFor="message"
+                        className="text-foreground font-medium"
+                      >
                         Message *
                       </Label>
                       <Textarea
@@ -426,7 +499,10 @@ export const Contact = () => {
                         placeholder="Tell me about your project, opportunity, or just say hello! I'd love to hear from you."
                       />
                       {touched.message && errors.message && (
-                        <p id="message-error" className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1">
+                        <p
+                          id="message-error"
+                          className="text-xs text-neon-pink mt-1.5 inline-flex items-center gap-1"
+                        >
                           <AlertCircle className="w-3.5 h-3.5" />
                           {errors.message}
                         </p>

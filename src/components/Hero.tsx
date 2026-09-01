@@ -18,7 +18,7 @@ const useInView = <T extends HTMLElement>() => {
     if (!el) return;
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0 }
+      { threshold: 0 },
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -36,26 +36,26 @@ export const Hero = () => {
     if (imgRef.current) imgRef.current.fetchPriority = "high";
   }, []);
   const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleViewResume = () => {
     // Add your resume URL here
-    window.open('/resume.pdf', '_blank');
+    window.open("/resume.pdf", "_blank");
   };
 
   const handleDownloadResume = () => {
     // Add your resume download URL here
-    const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'Jeeva_Loganathan_Resume.pdf';
+    const link = document.createElement("a");
+    link.href = "/resume.pdf";
+    link.download = "Jeeva L_Resume.pdf";
     link.click();
   };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden overflow-x-hidden pt-20 bg-background">
       <ParticleBackground />
-      
+
       {/* 3D Background — lazy-loaded, paused offscreen */}
       <div className="absolute inset-0 -z-10" ref={viewport.ref}>
         <Suspense fallback={null}>
@@ -109,7 +109,8 @@ export const Hero = () => {
               transition={{ delay: 1.2, duration: 0.6 }}
               className="text-lg md:text-xl text-muted-foreground mb-12 leading-relaxed"
             >
-              Building intelligent systems with Python, machine learning, backend engineering and strong problem solving foundations.
+              Building intelligent systems with Python, machine learning,
+              backend engineering and strong problem solving foundations.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -119,27 +120,27 @@ export const Hero = () => {
               transition={{ delay: 1.6, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Button 
-                variant="hero" 
-                size="lg" 
+              <Button
+                variant="hero"
+                size="lg"
                 className="min-w-48 group"
                 onClick={handleViewResume}
               >
                 <Eye className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
                 View Resume
               </Button>
-              <Button 
-                variant="heroOutline" 
-                size="lg" 
+              <Button
+                variant="heroOutline"
+                size="lg"
                 className="min-w-48 group"
                 onClick={handleDownloadResume}
               >
                 <Download className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                Download CV
+                Download Resume
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button
+                variant="outline"
+                size="lg"
                 className="min-w-48"
                 onClick={scrollToContact}
               >
@@ -173,20 +174,20 @@ export const Hero = () => {
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
-                
+
                 {/* Glowing effect */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-neon-purple/20 to-neon-cyan/20 animate-pulse"></div>
-                
+
                 {/* Floating elements */}
                 <motion.div
-                  animate={{ 
+                  animate={{
                     y: [0, -10, 0],
-                    rotate: [0, 5, 0]
+                    rotate: [0, 5, 0],
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 3,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                   className="absolute -top-4 -right-4 bg-neon-purple/20 text-[hsl(270,91%,32%)] dark:text-neon-purple px-3 py-1 rounded-lg text-sm font-mono backdrop-blur-sm"
                   aria-hidden="true"
@@ -195,15 +196,15 @@ export const Hero = () => {
                 </motion.div>
 
                 <motion.div
-                  animate={{ 
+                  animate={{
                     y: [0, 10, 0],
-                    rotate: [0, -5, 0]
+                    rotate: [0, -5, 0],
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut",
-                    delay: 1
+                    delay: 1,
                   }}
                   className="absolute -bottom-4 -left-4 bg-neon-cyan/20 text-[hsl(189,94%,26%)] dark:text-neon-cyan px-3 py-1 rounded-lg text-sm font-mono backdrop-blur-sm"
                   aria-hidden="true"
